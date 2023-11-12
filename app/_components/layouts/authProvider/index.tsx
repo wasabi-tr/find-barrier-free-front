@@ -9,6 +9,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
         // 他の設定...
       })
       const data = await res.json()
+      console.log(data)
     }
     getCsrfToken()
   }, [])
