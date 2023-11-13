@@ -12,7 +12,7 @@ const MyPage = () => {
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
-        'csrf-token': 'CNcBzNp4-Vx2q9lzt7K40NpTpC_4H85xzYZg',
+        'csrf-token': 'W2cc6L1Z-RJOKsLmSGPV1ZoVbz6VdD2_J-ls',
       },
       body: JSON.stringify({ email, password }),
     })
