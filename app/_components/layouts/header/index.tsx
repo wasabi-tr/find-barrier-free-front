@@ -1,14 +1,18 @@
 'use client'
+import { logout } from '@/app/_features/auth/api'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React from 'react'
 
 const Header = () => {
-  const [test, setTest] = useState(false)
+  const handleClick = async () => {
+    await logout()
+  }
   return (
     <header>
       <div className=""></div>
       <Link href={'/auth'}>ログイン</Link>
       <Link href={'/mypage'}>マイページ</Link>
+      <button onClick={handleClick}>ログアウト</button>
     </header>
   )
 }

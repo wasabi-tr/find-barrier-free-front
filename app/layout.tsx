@@ -21,11 +21,11 @@ export default async function RootLayout({
   return (
     <html lang="ja">
       <body className={inter.className}>
-        <AuthProvider>
-          <Header />
-          <main>{children}</main>
-          <Footer />
-        </AuthProvider>
+        {/* <AuthProvider> */}
+        <Header />
+        <main>{children}</main>
+        <Footer />
+        {/* </AuthProvider> */}
       </body>
     </html>
   )
