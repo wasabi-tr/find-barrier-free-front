@@ -1,10 +1,11 @@
 import Container from '@/app/_components/layouts/container'
-import { createFactory } from '@/app/_features/factory/api'
+import { createFactory, updateFactory } from '@/app/_features/factory/api'
 
-const RegisterFactory = async () => {
-  const register = async (data: FormData) => {
+const EditFactory = async () => {
+  const update = async (data: FormData) => {
     'use server'
-    const res = await createFactory({
+    const res = await updateFactory({
+      id: '1053b650-9e3a-4604-aec1-be947703f77d',
       name: 'test',
       zipcode: '273-0021',
       prefecture: '千葉県',
@@ -20,11 +21,11 @@ const RegisterFactory = async () => {
   }
   return (
     <Container>
-      <form action={register}>
+      <form action={update}>
         <button>submit</button>
       </form>
     </Container>
   )
 }
 
-export default RegisterFactory
+export default EditFactory

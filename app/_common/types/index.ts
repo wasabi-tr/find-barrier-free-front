@@ -95,6 +95,6 @@ export type EditedFactory = {
   holidays?: string
   siteUrl?: string
   imageUrl: string[]
-  genres: GenreToFactory[]
-  factoryToAccessibilityFeature: FactoryToAccessibilityFeature[]
+  genreIds?: string[]
+  featureIds?: string[]
 }

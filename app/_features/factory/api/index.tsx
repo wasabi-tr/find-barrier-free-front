@@ -1,4 +1,5 @@
 import { EditedFactory, Factory } from '@/app/_common/types'
+import { getAllCookies } from '@/app/_components/functional/cookie'
 
 export const getAllFactory = async () => {
   try {
@@ -12,16 +13,29 @@ export const getAllFactory = async () => {
   }
 }
 
+export const getFactoryById = async (id: string) => {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/factory/${id}`)
+    const factory = await res.json()
+    return factory
+  } catch (error: any) {
+    throw new Error(error)
+  }
+}
+
 export const createFactory = async (
-  factory: Omit<
-    EditedFactory,
-    'id' | 'genres' | 'factoryToAccessibilityFeature'
-  >
+  factory: Omit<EditedFactory, 'id' | 'genreIds' | 'featureIds'>
 ) => {
   try {
+    const cookie = getAllCookies()
+
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/factory`, {
       method: 'POST',
-      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        cookie,
+      },
+      //   credentials: 'include',
       body: JSON.stringify(factory),
     })
 
@@ -33,10 +47,31 @@ export const createFactory = async (
 
 export const updateFactory = async (factory: EditedFactory) => {
   try {
+    const cookie = getAllCookies()
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/factory`, {
       method: 'PATCH',
-      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        cookie,
+      },
       body: JSON.stringify(factory),
+    })
+
+    return await res.json()
+  } catch (error: any) {
+    throw new Error(error)
+  }
+}
+export const deleteFactory = async (id: string) => {
+  try {
+    const cookie = getAllCookies()
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/factory`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        cookie,
+      },
+      body: JSON.stringify({ id }),
     })
 
     return await res.json()
