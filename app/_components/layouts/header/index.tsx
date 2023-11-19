@@ -10,8 +10,6 @@ const Header = () => {
   return (
     <header>
       <div className=""></div>
-      <Link href={'/auth/login'}>ログイン</Link>
-      <Link href={'/mypage'}>マイページ</Link>
       <button onClick={handleClick}>ログアウト</button>
     </header>
   )

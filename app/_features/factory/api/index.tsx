@@ -1,5 +1,6 @@
 import { EditedFactory, Factory } from '@/app/_common/types'
 import { getAllCookies } from '@/app/_components/functional/cookie'
+import { cookies } from 'next/headers'
 
 export const getAllFactory = async () => {
   try {
@@ -27,15 +28,17 @@ export const createFactory = async (
   factory: Omit<EditedFactory, 'id' | 'genreIds' | 'featureIds'>
 ) => {
   try {
-    const cookie = getAllCookies()
+    // const cookie = getAllCookies()
+    const cookieStore = cookies()
+    const theme = cookieStore.get('__session')
+    const bearer = theme?.value
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/factory`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        cookie,
+        Authorization: `Bearer ${bearer}`,
       },
-      //   credentials: 'include',
       body: JSON.stringify(factory),
     })
 
