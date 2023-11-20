@@ -3,8 +3,7 @@ import { Inter } from 'next/font/google'
 import '@/app/_common/styles/globals.css'
 import Header from './_components/layouts/header'
 import Footer from './_components/layouts/footer'
-import { cookies, headers } from 'next/headers'
-import AuthProvider from './_components/layouts/authProvider'
+import NextAuthProvider from './_features/auth/providers/NextAuth'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,11 +20,11 @@ export default async function RootLayout({
   return (
     <html lang="ja">
       <body className={inter.className}>
-        {/* <AuthProvider> */}
-        <Header />
-        <main>{children}</main>
-        <Footer />
-        {/* </AuthProvider> */}
+        <NextAuthProvider>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </NextAuthProvider>
       </body>
     </html>
   )

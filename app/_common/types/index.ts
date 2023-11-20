@@ -82,3 +82,19 @@ export type Auth = {
   email: string
   password: string
 }
+
+export type EditedFactory = {
+  id: string
+  name: string
+  zipcode: string
+  prefecture: string
+  city: string
+  addressDetail: string
+  tel?: string
+  businessHours?: string
+  holidays?: string
+  siteUrl?: string
+  imageUrl: string[]
+  genreIds?: string[]
+  featureIds?: string[]
+}
