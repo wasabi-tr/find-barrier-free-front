@@ -1,11 +1,9 @@
 import Container from '@/app/_components/layouts/container'
-import AuthForm from '@/app/_features/auth/components/form'
-import { cookies } from 'next/headers'
-import { useSession, signIn, signOut } from 'next-auth/react'
 import { options } from '@/app/options'
 import { getServerSession } from 'next-auth' // 2⃣
+import { NextApiRequest } from 'next'
 
-const AuthLogin = async () => {
+const AuthLogin = async (req: NextApiRequest) => {
   const session = await getServerSession(options) // 3⃣
   const user = session?.user
   console.log(user)

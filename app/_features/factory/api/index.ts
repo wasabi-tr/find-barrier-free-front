@@ -30,8 +30,9 @@ export const createFactory = async (
   try {
     // const cookie = getAllCookies()
     const cookieStore = cookies()
-    const theme = cookieStore.get('__session')
+    const theme = cookieStore.get('next-auth.session-token')
     const bearer = theme?.value
+    console.log(bearer)
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/factory`, {
       method: 'POST',

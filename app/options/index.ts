@@ -2,10 +2,16 @@ import type { NextAuthOptions } from 'next-auth'
 import GitHubProvider from 'next-auth/providers/github'
 import GoogleProvider from 'next-auth/providers/google'
 import CredentialsProvider from 'next-auth/providers/credentials'
+import { randomBytes, randomUUID } from 'crypto'
 
 export const options: NextAuthOptions = {
   debug: true,
-  session: { strategy: 'jwt' },
+  session: {
+    strategy: 'jwt',
+    generateSessionToken: () => {
+      return randomUUID?.() ?? randomBytes(32).toString('hex')
+    },
+  },
   providers: [
     GitHubProvider({
       clientId: process.env.GITHUB_ID!,
@@ -51,7 +57,7 @@ export const options: NextAuthOptions = {
   callbacks: {
     jwt: async ({ token, user, account, profile, isNewUser }) => {
       // 注意: トークンをログ出力してはダメです。
-      console.log('in jwt', { user, token, account, profile })
+      // console.log('in jwt', { user, token, account, profile })
 
       if (user) {
         token.user = user
