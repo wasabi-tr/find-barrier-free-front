@@ -1,17 +1,27 @@
-'use client'
-import { logout } from '@/app/_features/auth/api'
-import Link from 'next/link'
 import React from 'react'
 import { signIn, signOut } from 'next-auth/react' // 1⃣
-import { useSearchParams } from 'next/navigation'
-const Header = () => {
-  const searchParams = useSearchParams()
-  const callbackUrl = searchParams.get('callbackUrl') || '/auth/login' // 2⃣
+import Link from 'next/link'
+import { getServerSession } from 'next-auth/next'
+import { options } from '@/app/options'
+import SideMenu from '../sideMenu'
+const Header = async () => {
+  const session = await getServerSession(options)
   return (
-    <header>
-      <div className=""></div>
-      <button onClick={() => signIn()}>Login With Google</button>
-      <button onClick={() => signOut()}>signOut</button>
+    <header className="flex justify-between py-6 px-6 shadow-sm">
+      <div className="">
+        <Link href={'/'}>Logo</Link>
+      </div>
+
+      {session?.user ? (
+        <>
+          <Link href={'/mypage'}>マイページ</Link>
+          <SideMenu />
+        </>
+      ) : (
+        <>
+          <button onClick={() => signIn()}>ログイン</button>
+        </>
+      )}
     </header>
   )
 }

@@ -21,9 +21,11 @@ export default async function RootLayout({
     <html lang="ja">
       <body className={inter.className}>
         <NextAuthProvider>
-          <Header />
-          <main>{children}</main>
-          <Footer />
+          <div className="text-black-333">
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </div>
         </NextAuthProvider>
       </body>
     </html>

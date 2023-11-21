@@ -5,7 +5,7 @@ import CredentialsProvider from 'next-auth/providers/credentials'
 import { randomBytes, randomUUID } from 'crypto'
 
 export const options: NextAuthOptions = {
-  debug: true,
+  // debug: true,
   session: {
     strategy: 'jwt',
     generateSessionToken: () => {
@@ -70,12 +70,14 @@ export const options: NextAuthOptions = {
       return token
     },
     session: ({ session, token }) => {
-      //   console.log('in session', { session, token })
-      token.accessToken
+      // console.log('in session', { token })
+      // session.user.role = token.role
+      // session.user.id = token.user.id
       return {
         ...session,
         user: {
           ...session.user,
+          accessToken: token.accessToken,
           id: token.sub,
           role: token.role,
         },

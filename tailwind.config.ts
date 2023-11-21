@@ -8,10 +8,16 @@ const config: Config = {
   ],
   theme: {
     screens: {
-      sm: '480px',
-      md: '768px',
-      lg: '976px',
-      xl: '1440px',
+      sm: { max: '767px' },
+    },
+    extend: {
+      colors: {
+        'black-333': '#333',
+        gray5: '#f8f8f8',
+        gray10: '#F2F2F2',
+        gray30: '#949494',
+        gray20: '#CDCDCD',
+      },
     },
   },
   plugins: [],
