@@ -1,8 +1,13 @@
-import { EditedFactory, Factory } from '@/app/_common/types'
+import {
+  AccessibilityFeature,
+  EditedFactory,
+  Factory,
+  Genre,
+} from '@/app/_common/types'
 import { getAllCookies } from '@/app/_components/functional/cookie'
 import { cookies } from 'next/headers'
 
-export const getAllFactory = async () => {
+export const getAllFactory = async (): Promise<Factory[]> => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/factory`, {
       credentials: 'include',
@@ -79,6 +84,37 @@ export const deleteFactory = async (id: string) => {
     })
 
     return await res.json()
+  } catch (error: any) {
+    throw new Error(error)
+  }
+}
+
+export const getFactoryGenres = async (): Promise<Genre[]> => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/factory/genres`,
+      {
+        credentials: 'include',
+      }
+    )
+    const genres = await res.json()
+    return genres
+  } catch (error: any) {
+    throw new Error(error)
+  }
+}
+export const getAccessibilityFeature = async (): Promise<
+  AccessibilityFeature[]
+> => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/factory/accessibilityFeature/`,
+      {
+        credentials: 'include',
+      }
+    )
+    const features = await res.json()
+    return features
   } catch (error: any) {
     throw new Error(error)
   }

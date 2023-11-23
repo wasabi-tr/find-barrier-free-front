@@ -3,21 +3,29 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --body-main-color: #333;
+  /* line-height: 1.7;
+  letter-spacing: 0.04em; */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
   }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+  line-height: 1.7;
+  letter-spacing: 0.04em;
+}
+:focus-visible {
+  outline: 2px solid #cd820a;
+}
+
+.selector {
+  @apply text-base py-3 px-3 rounded-lg bg-white border  border-color-main-800 text-color-main-800 cursor-pointer focus:outline-color-focus;
+}
+.textField {
+  @apply text-base py-3 px-3 rounded-lg bg-white border  border-color-main-800 text-color-main-800 cursor-pointer focus:outline-color-focus;
 }
 
 .container {

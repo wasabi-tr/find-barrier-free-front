@@ -48,13 +48,11 @@ export type Factory = {
 export type Genre = {
   id: string
   name: string
-  factories: GenreToFactory[]
 }
 
 export type AccessibilityFeature = {
   id: string
   name: string
-  factories: FactoryToAccessibilityFeature[]
 }
 
 export type GenreToFactory = {
