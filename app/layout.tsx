@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter, Noto_Sans_JP } from 'next/font/google'
 import '@/app/_common/styles/globals.css'
 import Header from './_components/layouts/header'
 import Footer from './_components/layouts/footer'
 import NextAuthProvider from './_features/auth/providers/NextAuth'
 
 const inter = Inter({ subsets: ['latin'] })
+const notoSansJP = Noto_Sans_JP({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -19,9 +20,9 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className={inter.className}>
+      <body className={`${notoSansJP.className}`}>
         <NextAuthProvider>
-          <div className="text-black-333">
+          <div className="text-color-main-800">
             <Header />
             <main>{children}</main>
             <Footer />

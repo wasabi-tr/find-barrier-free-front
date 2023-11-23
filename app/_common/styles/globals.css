@@ -14,7 +14,15 @@
 body {
   color: rgb(var(--body-main-color));
 }
-
+:focus-visible {
+  outline: 2px solid #cd820a;
+}
+.selector {
+  @apply text-base py-3 px-3 rounded-lg bg-white border  border-color-main-800 text-color-main-800 cursor-pointer focus:outline-color-focus;
+}
+.textField {
+  @apply text-base py-3 px-3 rounded-lg bg-white border  border-color-main-800 text-color-main-800 cursor-pointer focus:outline-color-focus;
+}
 .container {
   width: 1200px;
   max-width: 100%;

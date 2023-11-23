@@ -1,7 +1,14 @@
-import React from "react";
+import React from 'react'
+import Container from '../container'
 
 const Footer = () => {
-  return <div>Footer</div>;
-};
+  return (
+    <footer className="bg-gray-50">
+      <Container>
+        <p>Footer</p>
+      </Container>
+    </footer>
+  )
+}
 
-export default Footer;
+export default Footer
