@@ -4,6 +4,8 @@
 
 :root {
   --body-main-color: #333;
+  /* line-height: 1.7;
+  letter-spacing: 0.04em; */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -12,17 +14,20 @@
 }
 
 body {
-  color: rgb(var(--body-main-color));
+  line-height: 1.7;
+  letter-spacing: 0.04em;
 }
 :focus-visible {
   outline: 2px solid #cd820a;
 }
+
 .selector {
   @apply text-base py-3 px-3 rounded-lg bg-white border  border-color-main-800 text-color-main-800 cursor-pointer focus:outline-color-focus;
 }
 .textField {
   @apply text-base py-3 px-3 rounded-lg bg-white border  border-color-main-800 text-color-main-800 cursor-pointer focus:outline-color-focus;
 }
+
 .container {
   width: 1200px;
   max-width: 100%;
