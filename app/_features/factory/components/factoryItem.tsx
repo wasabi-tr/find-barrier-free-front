@@ -3,13 +3,15 @@ import { Factory } from '@/app/_common/types'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { FC } from 'react'
+import { getFactoryGenres } from '../api'
+import { getReviewsByFactoryId } from '../../review/api'
+import { UserIcon } from '@heroicons/react/24/solid'
 
 type Props = {
   factory: Factory
 }
 
-const FactoryItem: FC<Props> = ({ factory }) => {
-  console.log(factory)
+const FactoryItem: FC<Props> = async ({ factory }) => {
   const {
     id,
     name,
@@ -25,12 +27,15 @@ const FactoryItem: FC<Props> = ({ factory }) => {
     siteUrl,
     imageUrl,
   } = factory
+  const genres = await getFactoryGenres(id)
+  const reviews = await getReviewsByFactoryId(id)
+  console.log(reviews)
 
   return (
     <li>
       <Link
-        href={`/factory/detail/${id}`}
-        className="flex gap-2 p-4 transition duration-300 border-b border-color-main-400  hover:bg-color-main-200"
+        href={`/factory/${id}`}
+        className="flex items-start gap-2 p-4 transition duration-300 border-b border-color-main-400  hover:bg-color-main-200"
       >
         <figure className="relative basis-[240px] w-[240px] aspect-video min-h-0 ">
           <Image
@@ -46,6 +51,46 @@ const FactoryItem: FC<Props> = ({ factory }) => {
             〒{zipcode}&nbsp;
             {`${prefecture}${city}${addressDetail}`}
           </p>
+          {genres && genres.length > 0 && (
+            <ul className="flex gap-1 mt-2">
+              {genres.map((genre) => (
+                <li
+                  key={genre.id}
+                  className="py-1 px-4 bg-slate-200 rounded-lg text-sm"
+                >
+                  #{genre.name}
+                </li>
+              ))}
+            </ul>
+          )}
+          {reviews && reviews.length > 0 && (
+            <ul className="flex flex-col gap-1 mt-2">
+              {reviews.map((review) => (
+                <li
+                  key={review.id}
+                  className="flex gap-2 py-2 px-4 bg-color-main-200 rounded-md"
+                >
+                  <div className="flex items-center justify-center shrink-0  w-8 h-8 rounded-full bg-color-main-100  ">
+                    {review.user.avatarUrl ? (
+                      <Image
+                        src={review.user.avatarUrl}
+                        alt=""
+                        width={20}
+                        height={20}
+                        className="w-6 h-6 object-cover"
+                      />
+                    ) : (
+                      <UserIcon className="w-6 h-6 text-color-main-400" />
+                    )}
+                  </div>
+                  <div className="">
+                    <p className="font-semibold">{review.title}</p>
+                    <p className="text-sm">{review.comment}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </Link>
     </li>

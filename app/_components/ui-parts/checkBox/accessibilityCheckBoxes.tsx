@@ -1,9 +1,9 @@
-import { getAccessibilityFeature } from '@/app/_features/factory/api'
 import React from 'react'
 import { BuildingLibraryIcon } from '@heroicons/react/24/outline'
+import { getFeatures } from '@/app/_features/factory/api'
 
 const AccessibilityCheckBoxes = async () => {
-  const features = await getAccessibilityFeature()
+  const features = await getFeatures()
 
   return (
     <div className="flex flex-col gap-2">

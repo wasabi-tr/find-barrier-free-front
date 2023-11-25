@@ -1,8 +1,9 @@
 import {
-  AccessibilityFeature,
   EditedFactory,
   Factory,
+  Feature,
   Genre,
+  GenreToFactory,
 } from '@/app/_common/types'
 import { getAllCookies } from '@/app/_components/functional/cookie'
 import { cookies } from 'next/headers'
@@ -71,6 +72,7 @@ export const updateFactory = async (factory: EditedFactory) => {
     throw new Error(error)
   }
 }
+
 export const deleteFactory = async (id: string) => {
   try {
     const cookie = getAllCookies()
@@ -89,13 +91,19 @@ export const deleteFactory = async (id: string) => {
   }
 }
 
-export const getFactoryGenres = async (): Promise<Genre[]> => {
+export const getGenres = async (): Promise<Genre[]> => {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/factory/genres`)
+    const genres = await res.json()
+    return genres
+  } catch (error: any) {
+    throw new Error(error)
+  }
+}
+export const getFactoryGenres = async (factoryId: string): Promise<Genre[]> => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/factory/genres`,
-      {
-        credentials: 'include',
-      }
+      `${process.env.NEXT_PUBLIC_API_URL}/factory/genre/${factoryId}`
     )
     const genres = await res.json()
     return genres
@@ -103,15 +111,23 @@ export const getFactoryGenres = async (): Promise<Genre[]> => {
     throw new Error(error)
   }
 }
-export const getAccessibilityFeature = async (): Promise<
-  AccessibilityFeature[]
-> => {
+export const getFeatures = async (): Promise<Feature[]> => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/factory/accessibilityFeature/`,
-      {
-        credentials: 'include',
-      }
+      `${process.env.NEXT_PUBLIC_API_URL}/factory/features/`
+    )
+    const features = await res.json()
+    return features
+  } catch (error: any) {
+    throw new Error(error)
+  }
+}
+export const getFactoryFeatures = async (
+  factoryId: string
+): Promise<Feature[]> => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/factory/feature/${factoryId}`
     )
     const features = await res.json()
     return features

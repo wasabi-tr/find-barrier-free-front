@@ -3,7 +3,7 @@ import { AreaSelector } from '@/app/_components/ui-parts/selector/AreaSelector'
 import { PurposeSelector } from '@/app/_components/ui-parts/selector/GenreSelector'
 import TextField from '../../ui-parts/textField'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid'
-import AccessibilityCheckBoxes from '../../ui-parts/checBox/accessibilityCheckBoxes'
+import AccessibilityCheckBoxes from '../../ui-parts/checkBox/accessibilityCheckBoxes'
 
 const SearchBox: FC = async () => {
   async function myAction(formData: FormData) {

@@ -43,14 +43,14 @@ export type Factory = {
   reviews: Review[]
   favoritedBy: Favorite[]
   genres: GenreToFactory[]
-  factoryToAccessibilityFeature: FactoryToAccessibilityFeature[]
+  features: FactoryFeature[]
 }
 export type Genre = {
   id: string
   name: string
 }
 
-export type AccessibilityFeature = {
+export type Feature = {
   id: string
   name: string
 }
@@ -62,9 +62,9 @@ export type GenreToFactory = {
   factory: Factory
 }
 
-export type FactoryToAccessibilityFeature = {
+export type FactoryFeature = {
   featureId: string
-  feature: AccessibilityFeature
+  feature: Feature
   factoryId: string
   factory: Factory
 }

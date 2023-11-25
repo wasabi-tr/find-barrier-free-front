@@ -44,6 +44,12 @@ const config: Config = {
       boxShadow: {
         main: '0px 4px 16px 3px rgba(0, 0, 0, 0.10), 0px 1px 6px 0px rgba(0, 0, 0, 0.30)',
       },
+      gridTemplateColumns: {
+        'auto-min-450': 'repeat(auto-fit, minmax(min(450px, 100%), 1fr))',
+        'auto-min-400': 'repeat(auto-fit, minmax(min(400px, 100%), 1fr))',
+        'auto-min-300': 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))',
+        'auto-min-200': 'repeat(auto-fit, minmax(min(200px, 100%), 1fr))',
+      },
     },
   },
   plugins: [],
