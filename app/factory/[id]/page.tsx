@@ -43,7 +43,7 @@ export default async function FactoryDetail({
 
   return (
     <div>
-      <div className="gap grid grid-cols-auto-min-300">
+      <div className="gap grid grid-cols-auto-min-300 gap-4">
         {imageUrl &&
           imageUrl.length > 0 &&
           imageUrl.map((image: string, index: number) => (
@@ -65,7 +65,7 @@ export default async function FactoryDetail({
           {`${prefecture}${city}${addressDetail}`}
         </p>
       </section>
-      <section className="mt-4">
+      <section className="grid gap-2 mt-4">
         <h2 className="font-semibold text-lg">{title}</h2>
         <p>{description}</p>
       </section>
