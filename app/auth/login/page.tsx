@@ -1,35 +1,57 @@
+'use client'
+
 import Container from '@/app/_components/layouts/container'
 import { options } from '@/app/options'
 import { getServerSession } from 'next-auth' // 2⃣
 import { NextApiRequest } from 'next'
+import { useState } from 'react'
+import { useSession } from 'next-auth/react'
+import { useMutateAuth } from '@/app/_features/auth/hooks/useMutateAuth'
 
-const AuthLogin = async (req: NextApiRequest) => {
-  const session = await getServerSession(options) // 3⃣
-  const user = session?.user
-  console.log(user)
+const AuthLogin = (req: NextApiRequest) => {
+  const session = useSession()
+  console.log(session)
+
+  // 3⃣
+  // const user = session?.user
+  // console.log(user
+  const { email, setEmail, password, setPassword, signIn, singUp, message } =
+    useMutateAuth()
+  console.log('render')
 
   return (
     <Container>
-      <>
-        <p>Profile Page</p>
-        {!user ? (
-          <p>ユーザー情報が取得できていません。。。</p>
-        ) : (
-          <>
-            <div>
-              <img
-                src={user.image ? user.image : '/images/default.png'}
-                className="max-h-36"
-                alt={`profile photo of ${user.name}`}
-              />
-            </div>
-            <div className="mt-8">
-              <p className="mb-3">Name: {user.name}</p>
-              <p className="mb-3">Email: {user.email}</p>
-            </div>
-          </>
-        )}
-      </>
+      <div>
+        <p>{message}</p>
+        <input
+          type="email"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+          placeholder="メールアドレス"
+        />
+        <input
+          type="password"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+          placeholder="パスワード"
+        />
+        <button
+          type="button"
+          onClick={() => {
+            signIn()
+          }}
+        >
+          ログイン
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            singUp()
+          }}
+        >
+          サインアップ
+        </button>
+      </div>
     </Container>
   )
 }

@@ -16,6 +16,8 @@
     "@markuplint/react-spec": "^3.12.0",
     "@react-google-maps/api": "^2.19.2",
     "axios": "^1.6.1",
+    "firebase": "^10.6.0",
+    "firebase-admin": "^11.11.1",
     "markuplint": "^3.14.0",
     "next": "^14.0.2",
     "next-auth": "^4.24.5",

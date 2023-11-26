@@ -8,6 +8,7 @@ import {
 import { getServerSession } from 'next-auth'
 import { options } from '@/app/options'
 import { signIn } from 'next-auth/react'
+import LoginButton from '../../ui-parts/authButton/loginButton'
 const BottomNavigation = async () => {
   const session = await getServerSession(options)
 
@@ -49,7 +50,7 @@ const BottomNavigation = async () => {
             </Link>
           ) : (
             <>
-              <button onClick={() => signIn()}>ログイン</button>
+              <LoginButton />
             </>
           )}
         </li>

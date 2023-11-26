@@ -3,6 +3,7 @@ import GitHubProvider from 'next-auth/providers/github'
 import GoogleProvider from 'next-auth/providers/google'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { randomBytes, randomUUID } from 'crypto'
+import { auth } from '../_common/libs/firebase/admin'
 
 export const options: NextAuthOptions = {
   // debug: true,
@@ -13,44 +14,29 @@ export const options: NextAuthOptions = {
     },
   },
   providers: [
-    GitHubProvider({
-      clientId: process.env.GITHUB_ID!,
-      clientSecret: process.env.GITHUB_SECRET!,
-    }),
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
     CredentialsProvider({
-      name: 'Sign in',
-      credentials: {
-        email: {
-          label: 'Email',
-          type: 'email',
-          placeholder: 'example@example.com',
-        },
-        password: { label: 'Password', type: 'password' },
-      },
+      credentials: {},
       // メルアド認証処理
-      async authorize(credentials) {
-        const users = [
-          { id: '1', email: 'user1@example.com', password: 'password1' },
-          { id: '2', email: 'user2@example.com', password: 'password2' },
-          { id: '3', email: 'abc@abc', password: '123' },
-        ]
-
-        const user = users.find((user) => user.email === credentials?.email)
-
-        if (user && user?.password === credentials?.password) {
-          return {
-            id: user.id,
-            name: user.email,
-            email: user.email,
-            role: 'admin',
+      authorize: async ({ idToken }: any, _req) => {
+        if (idToken) {
+          try {
+            const decoded = await auth.verifyIdToken(idToken)
+            if (decoded) {
+              return {
+                id: decoded.uid,
+                name: decoded.email,
+                role: decoded.role,
+              }
+            }
+          } catch (err) {
+            console.error(err)
           }
-        } else {
-          return null
         }
+        return null
       },
     }),
   ],
@@ -69,15 +55,15 @@ export const options: NextAuthOptions = {
       }
       return token
     },
-    session: ({ session, token }) => {
-      // console.log('in session', { token })
+    session: async ({ session, token }) => {
+      // console.log('in session', { session, token })
       // session.user.role = token.role
       // session.user.id = token.user.id
+      token.accessToken
       return {
         ...session,
         user: {
           ...session.user,
-          accessToken: token.accessToken,
           id: token.sub,
           role: token.role,
         },
