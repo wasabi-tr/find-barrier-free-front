@@ -1,9 +1,9 @@
-import { getFactoryGenres } from '@/app/_features/factory/api'
 import React, { FC } from 'react'
 import { FlagIcon } from '@heroicons/react/24/outline'
+import { getGenres } from '@/app/_features/factory/api'
 
 export const PurposeSelector: FC = async () => {
-  const purposes = await getFactoryGenres()
+  const purposes = await getGenres()
   return (
     <div className="flex flex-col gap-2">
       <label htmlFor="purpose" className="flex items-center gap-2">
