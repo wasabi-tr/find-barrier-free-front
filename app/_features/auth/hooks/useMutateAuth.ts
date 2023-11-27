@@ -6,7 +6,8 @@ import {
 } from 'firebase/auth'
 
 import { signIn as signInByNextAuth } from 'next-auth/react'
-import { error } from 'console'
+import { userMutateUser } from '../../user/api/userMutateUser'
+import { createUser } from '../../user/api'
 
 export const useMutateAuth = () => {
   const [email, setEmail] = useState('')
@@ -22,10 +23,12 @@ export const useMutateAuth = () => {
         email,
         password
       )
+      console.log(userCredential)
       const idToken = await userCredential.user.getIdToken()
       await signInByNextAuth('credentials', {
         idToken,
       })
+
       setEmail('')
       setPassword('')
       setMessage('ログインに成功しました。')
@@ -44,6 +47,8 @@ export const useMutateAuth = () => {
         email,
         password
       )
+      console.log(userCredential.user)
+      await createUser(userCredential)
       const idToken = await userCredential.user.getIdToken()
       await signInByNextAuth('credentials', {
         idToken,
