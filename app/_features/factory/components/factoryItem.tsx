@@ -6,36 +6,23 @@ import React, { FC } from 'react'
 import { getFactoryGenres } from '../api'
 import { getReviewsByFactoryId } from '../../review/api'
 import { UserIcon } from '@heroicons/react/24/solid'
+import { FavoriteButton } from '../../favorite/components/favoriteButtton'
 
 type Props = {
   factory: Factory
 }
 
 const FactoryItem: FC<Props> = async ({ factory }) => {
-  const {
-    id,
-    name,
-    zipcode,
-    prefecture,
-    city,
-    addressDetail,
-    lat,
-    lng,
-    tel,
-    businessHours,
-    holidays,
-    siteUrl,
-    imageUrl,
-  } = factory
+  const { id, name, zipcode, prefecture, city, addressDetail, imageUrl } =
+    factory
   const genres = await getFactoryGenres(id)
   const reviews = await getReviewsByFactoryId(id)
-  console.log(reviews)
 
   return (
     <li>
       <Link
         href={`/factory/${id}`}
-        className="flex items-start gap-2 py-8 px-4 transition duration-300 border-b border-color-main-400  hover:bg-color-main-200 lg:flex-col"
+        className="flex items-start gap-2 relative py-8 px-4 transition duration-300 border-b border-color-main-400  hover:bg-color-main-200 lg:flex-col"
       >
         <figure className="relative basis-[240px] w-[240px] aspect-video min-h-0 mx-auto ">
           <Image

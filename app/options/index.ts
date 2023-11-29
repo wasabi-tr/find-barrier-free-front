@@ -61,7 +61,6 @@ export const options: NextAuthOptions = {
       return token
     },
     session: async ({ session, token }) => {
-      // console.log('in session', { session, token })
       // session.user.role = token.role
       // session.user.id = token.user.id
       // console.log(token.emailVerified)
