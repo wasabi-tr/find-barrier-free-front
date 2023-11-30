@@ -1,21 +1,20 @@
 import { authHeaderServerComponents } from '@/app/_components/functional/authHeader'
 import { useSession } from 'next-auth/react'
 
-export const registerFavorite = async (factoryId: string) => {
-  const { data } = useSession()
-  const userId = data?.user?.id
-  if (!userId) return
+type Props = {
+  method: 'POST' | 'DELETE'
+  userId: string
+  factoryId: string
+}
+export const switchFavorite = async ({ method, userId, factoryId }: Props) => {
+  const authorization = authHeaderServerComponents()
 
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/favorite`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    method,
+    headers: { ...authorization },
     body: JSON.stringify({ userId, factoryId }),
   })
-
-  console.log(res)
-
+  if (!res.ok) return
   return await res.json()
 }
 export const getFavorite = async (userId: string, factoryId: string) => {
@@ -24,15 +23,9 @@ export const getFavorite = async (userId: string, factoryId: string) => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/favorite?useId=${userId}&factoryId=${factoryId}`,
     {
-      credentials: 'include',
       headers: { ...authorization },
     }
   )
-  console.log('---------------')
-  console.log(res)
-  console.log('---------------')
-
   if (!res.ok) return
-
   return await res.json()
 }
