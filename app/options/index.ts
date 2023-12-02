@@ -65,6 +65,7 @@ export const options: NextAuthOptions = {
       // session.user.id = token.user.id
       // console.log(token.emailVerified)
       // console.log(token.uid)
+      // console.log(session)
 
       token.accessToken
       return {
