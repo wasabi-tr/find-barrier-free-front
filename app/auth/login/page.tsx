@@ -1,20 +1,13 @@
 'use client'
 
 import Container from '@/app/_components/layouts/container'
-import { options } from '@/app/options'
-import { getServerSession } from 'next-auth' // 2⃣
-import { NextApiRequest } from 'next'
-import { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { useMutateAuth } from '@/app/_features/auth/hooks/useMutateAuth'
 
-const AuthLogin = (req: NextApiRequest) => {
+const AuthLogin = () => {
   const session = useSession()
-  console.log(session.data?.user)
-
   const { email, setEmail, password, setPassword, signIn, singUp, message } =
     useMutateAuth()
-
   return (
     <Container>
       <div>

@@ -6,7 +6,7 @@ const FactoryList: FC = async () => {
   const factories = await getAllFactory()
 
   return (
-    <ul>
+    <ul className="grid gap-4">
       {factories?.map((factory) => (
         <FactoryItem key={factory.id} factory={factory} />
       ))}

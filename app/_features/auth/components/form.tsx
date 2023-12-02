@@ -4,7 +4,6 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import React, { FC } from 'react'
 import { useForm } from 'react-hook-form'
 import { login, signup } from '../api'
-import { getUser } from '../../user/api/getUser'
 
 type Props = {
   isRegister?: boolean
@@ -22,7 +21,6 @@ const AuthForm: FC<Props> = ({ isRegister = false }) => {
       await signup(data)
     }
     await login(data)
-    await getUser()
   }
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
