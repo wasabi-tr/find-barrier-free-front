@@ -6,8 +6,10 @@ import {
   getFactoryFeatures,
   getFactoryGenres,
 } from '@/app/_features/factory/api'
+import { FavoriteButton } from '@/app/_features/favorite/components/favoriteButtton'
 import { getReviewsByFactoryId } from '@/app/_features/review/api'
 import { UserIcon } from '@heroicons/react/24/outline'
+import { getServerSession } from 'next-auth'
 import Image from 'next/image'
 import { Suspense } from 'react'
 
@@ -20,6 +22,7 @@ export default async function FactoryDetail({
   const reviews = await getReviewsByFactoryId(params.id)
   const genres = await getFactoryGenres(params.id)
   const features = await getFactoryFeatures(params.id)
+  const session = await getServerSession()
 
   const {
     id,
@@ -39,7 +42,7 @@ export default async function FactoryDetail({
     imageUrl,
   } = factory
 
-  console.log(factory)
+  // console.log(factory)
 
   return (
     <div>
@@ -58,12 +61,15 @@ export default async function FactoryDetail({
             </div>
           ))}
       </div>
-      <section className="pb-4 border-b border-color-main-400 mt-8">
+      <section className="relative pb-4 border-b border-color-main-400 mt-8">
         <h1 className="font-semibold text-2xl">{name}</h1>
         <p className="mt-2">
           〒{zipcode}&nbsp;
           {`${prefecture}${city}${addressDetail}`}
         </p>
+        <div className="">
+          <FavoriteButton factoryId={id} />
+        </div>
       </section>
       <section className="grid gap-2 mt-4">
         <h2 className="font-semibold text-lg">{title}</h2>

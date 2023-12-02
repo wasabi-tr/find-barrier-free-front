@@ -9,6 +9,8 @@ import {
   HomeIcon,
   BuildingLibraryIcon,
 } from '@heroicons/react/24/outline'
+import LoginButton from '../../ui-parts/authButton/loginButton'
+import LogoutButton from '../../ui-parts/authButton/logoutButton'
 const Header = async () => {
   const session = await getServerSession(options)
   return (
@@ -58,9 +60,12 @@ const Header = async () => {
             </Link>
           ) : (
             <>
-              <button onClick={() => signIn()}>ログイン</button>
+              <LoginButton />
             </>
           )}
+        </li>
+        <li>
+          <LogoutButton />
         </li>
       </ul>
       {/* <>
