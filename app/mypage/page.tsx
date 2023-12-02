@@ -6,11 +6,11 @@ import { getServerSession } from 'next-auth'
 const MyPage = async () => {
   const session = await getServerSession()
   const user = await getUser(session?.user.id)
-  console.log(user)
+  console.log(session)
 
   return (
     <Container>
-      <p>mypage</p>
+      <p>test</p>
     </Container>
   )
 }
