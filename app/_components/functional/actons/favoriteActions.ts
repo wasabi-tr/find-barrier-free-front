@@ -14,3 +14,6 @@ export const favoriteActions = async (userId: string, factoryId: string) => {
     return true
   }
 }
+export const getFavoriteActions = async (userId: string, factoryId: string) => {
+  return await getFavorite(userId, factoryId)
+}

@@ -1,5 +1,4 @@
 import { authHeaderServerComponents } from '@/app/_components/functional/authHeader'
-import { useSession } from 'next-auth/react'
 
 type Props = {
   method: 'POST' | 'DELETE'
