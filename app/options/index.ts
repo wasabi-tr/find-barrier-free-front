@@ -1,10 +1,8 @@
 import type { NextAuthOptions } from 'next-auth'
-import GitHubProvider from 'next-auth/providers/github'
 import GoogleProvider from 'next-auth/providers/google'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { randomBytes, randomUUID } from 'crypto'
 import { auth } from '../_common/libs/firebase/admin'
-import { v4 as uuidv4 } from 'uuid'
 
 export const options: NextAuthOptions = {
   // debug: true,
@@ -43,9 +41,6 @@ export const options: NextAuthOptions = {
   ],
   callbacks: {
     jwt: async ({ token, user, account, profile, isNewUser }) => {
-      // 注意: トークンをログ出力してはダメです。
-      // console.log('in jwt', { user, token, account, profile })
-
       if (user) {
         token.user = user
         const u = user as any
@@ -54,18 +49,9 @@ export const options: NextAuthOptions = {
       if (account) {
         token.accessToken = account.access_token
       }
-      // if (account?.provider === 'google') {
-      //   // Google認証時にUUIDを生成
-      //   user.id = uuidv4()
-      // }
       return token
     },
     session: async ({ session, token }) => {
-      // session.user.role = token.role
-      // session.user.id = token.user.id
-      // console.log(token.emailVerified)
-      // console.log(token.uid)
-
       token.accessToken
       return {
         ...session,
