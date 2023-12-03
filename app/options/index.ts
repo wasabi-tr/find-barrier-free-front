@@ -1,18 +1,12 @@
 import type { NextAuthOptions } from 'next-auth'
-import GitHubProvider from 'next-auth/providers/github'
 import GoogleProvider from 'next-auth/providers/google'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import { randomBytes, randomUUID } from 'crypto'
 import { auth } from '../_common/libs/firebase/admin'
-import { v4 as uuidv4 } from 'uuid'
 
 export const options: NextAuthOptions = {
   // debug: true,
   session: {
     strategy: 'jwt',
-    generateSessionToken: () => {
-      return randomUUID?.() ?? randomBytes(32).toString('hex')
-    },
   },
   providers: [
     GoogleProvider({
