@@ -1,4 +1,3 @@
-export const runtime = 'edge'
 import { EditedFactory, Factory, Feature, Genre } from '@/app/_common/types'
 import { getAllCookies } from '@/app/_components/functional/cookie'
 import { cookies } from 'next/headers'
