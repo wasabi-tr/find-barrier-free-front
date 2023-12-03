@@ -1,6 +1,2 @@
-import { options } from '@/app/options'
-import NextAuth from 'next-auth'
-
-const handler = NextAuth(options)
-
-export { handler as GET, handler as POST }
+export { GET, POST } from '@/app/next-auth'
+// export const runtime = 'edge' // optional

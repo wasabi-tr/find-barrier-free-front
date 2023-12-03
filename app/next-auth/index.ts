@@ -1,16 +1,16 @@
-import type { NextAuthOptions } from 'next-auth'
+import type NextAuthOptions from 'next-auth'
+import NextAuth from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import { randomBytes, randomUUID } from 'crypto'
-import { auth } from '../_common/libs/firebase/admin'
+import { auth as fireAuth } from '../_common/libs/firebase/admin'
 
-export const options: NextAuthOptions = {
+export const {
+  handlers: { GET, POST },
+  auth,
+} = NextAuth({
   // debug: true,
   session: {
     strategy: 'jwt',
-    generateSessionToken: () => {
-      return randomUUID?.() ?? randomBytes(32).toString('hex')
-    },
   },
   providers: [
     GoogleProvider({
@@ -23,7 +23,7 @@ export const options: NextAuthOptions = {
       authorize: async ({ idToken }: any, _req) => {
         if (idToken) {
           try {
-            const decoded = await auth.verifyIdToken(idToken)
+            const decoded = await fireAuth.verifyIdToken(idToken)
             if (decoded) {
               return {
                 id: decoded.uid,
@@ -39,6 +39,7 @@ export const options: NextAuthOptions = {
       },
     }),
   ],
+  secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     jwt: async ({ token, user, account, profile, isNewUser }) => {
       // 注意: トークンをログ出力してはダメです。
@@ -76,4 +77,4 @@ export const options: NextAuthOptions = {
       }
     },
   },
-}
+})
