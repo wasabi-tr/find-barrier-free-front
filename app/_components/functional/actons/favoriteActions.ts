@@ -1,5 +1,4 @@
 'use server'
-
 import { getFavorite, switchFavorite } from '@/app/_features/favorite/api'
 
 export const favoriteActions = async (userId: string, factoryId: string) => {

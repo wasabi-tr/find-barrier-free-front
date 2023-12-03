@@ -1,8 +1,6 @@
 import React from 'react'
 import { signIn, signOut } from 'next-auth/react' // 1⃣
 import Link from 'next/link'
-import { getServerSession } from 'next-auth/next'
-import { options } from '@/app/options'
 import SideMenu from '../sideMenu'
 import {
   UserIcon,
@@ -11,8 +9,9 @@ import {
 } from '@heroicons/react/24/outline'
 import LoginButton from '../../ui-parts/authButton/loginButton'
 import LogoutButton from '../../ui-parts/authButton/logoutButton'
+import { auth } from '@/app/next-auth'
 const Header = async () => {
-  const session = await getServerSession(options)
+  const session = await auth()
   return (
     <header className="flex items-center py-6 px-6 shadow-sm">
       <div className="">
