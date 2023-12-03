@@ -1,8 +1,4 @@
-import { ChangeEvent, useEffect, useTransition } from 'react'
 import Container from '../_components/layouts/container'
-import { getUser } from '../_features/user/api'
-import { auth } from '../next-auth'
-import { useSession } from 'next-auth/react'
 import { putImage } from '../_common/libs/r2/storage'
 
 const Dashboard = async () => {
@@ -17,13 +13,11 @@ const Dashboard = async () => {
   }
 
   return (
-    <Container>
-      <form action={formActions}>
-        <input type="file" name="avatar" />
-        <input type="text" name="text" />
-        <button>送信ボタン</button>
-      </form>
-    </Container>
+    <form action={formActions}>
+      <input type="file" name="avatar" />
+      <input type="text" name="text" />
+      <button>送信ボタン</button>
+    </form>
   )
 }
 

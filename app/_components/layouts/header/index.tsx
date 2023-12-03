@@ -49,7 +49,7 @@ const Header = async () => {
         <li>
           {session?.user ? (
             <Link
-              href={'/mypage'}
+              href={'/dashboard'}
               className="flex items-center gap-2 p-3 rounded-md transition  hover:bg-color-main-200 "
             >
               <span>
@@ -69,7 +69,7 @@ const Header = async () => {
       </ul>
       {/* <>
         <Link
-          href={'/mypage'}
+          href={'/dashboard'}
           className="flex items-center gap-2 border border-color-main-400 py-2 px-8 rounded-3xl transition duration-300 ml-auto hover:bg-color-main-200 sm:hidden"
         >
           <span>

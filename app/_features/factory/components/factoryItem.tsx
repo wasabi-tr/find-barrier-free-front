@@ -55,7 +55,7 @@ const FactoryItem: FC<Props> = async ({ factory }) => {
             </ul>
           )}
           {reviews && reviews.length > 0 && (
-            <ul className="flex flex-col gap-1 mt-2">
+            <ul className="flex flex-col gap-1 mt-2 max-h-[250px] overflow-y-scroll">
               {reviews.map((review) => (
                 <li
                   key={review.id}

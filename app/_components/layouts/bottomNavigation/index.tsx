@@ -39,7 +39,7 @@ const BottomNavigation = async () => {
         <li>
           {session?.user ? (
             <Link
-              href={'/mypage'}
+              href={'/dashboard'}
               className="flex flex-col justify-center items-center gap-1 p-3 rounded-md transition  hover:bg-color-main-200 text-xs h-full"
             >
               <span>
