@@ -1,4 +1,4 @@
 'use server'
-export const userUpdate = async () => {
-  console.log('test')
+export const userUpdate = async (data: FormData) => {
+  console.log(data)
 }

@@ -1,32 +1,35 @@
-'use client'
 import { userUpdate } from '@/app/_components/functional/actons/userUpdate'
-import { getUser } from '@/app/_features/user/api'
+import { authHeaderServerComponents } from '@/app/_components/functional/authHeader'
+import { auth } from '@/app/next-auth'
 import { useSession } from 'next-auth/react'
 import { memo, useEffect, useState } from 'react'
+export const getUser = async (id: string) => {
+  const authorization = authHeaderServerComponents()
+  //認証の処理を追加する
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/${id}`, {
+    headers: { ...authorization },
+  })
+  const user = await res.json()
+  return user
+}
 
-const DashboardSetting = () => {
-  const { data: session } = useSession()
-  const [userId, setUserId] = useState(null)
-  console.log(session?.user.id)
-  const test = async () => {
-    const res = await fetch(`/api/user?id=${session?.user.id}`)
-    const data = await res.json()
-    console.log(data)
-  }
-  useEffect(() => {
-    setUserId(session?.user.id)
-    if (userId) {
-      test()
-    }
-  }, [session])
-  if (!userId) {
-    return <div>Loading...</div>
-  }
+const DashboardSetting = async () => {
+  const session = await auth()
+  const user = await getUser(session?.user.id)
+  console.log(session)
+  console.log(user)
+
+  //   const user = await getUser(session?.user.id)
+  //   console.log(session)
+  //   console.log(user)
+
   return (
     <section>
       <form action={userUpdate}>
-        <h2>ユーザーネーム</h2>
-
+        <div className="">
+          <h2>ユーザーネーム</h2>
+          <input type="text" name="test" />
+        </div>
         <button>送信</button>
       </form>
     </section>

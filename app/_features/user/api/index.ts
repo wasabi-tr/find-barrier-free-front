@@ -1,10 +1,11 @@
+// 'use server'
 import { authHeaderServerComponents } from '@/app/_components/functional/authHeader'
 import { UserCredential } from 'firebase/auth'
-const authorization = authHeaderServerComponents()
 export const getUser = async (id: string) => {
+  // const authorization = authHeaderServerComponents()
   //認証の処理を追加する
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/${id}`, {
-    headers: { ...authorization },
+    // headers: { ...authorization },
   })
   const user = await res.json()
   return user

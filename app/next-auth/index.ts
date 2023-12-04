@@ -9,6 +9,7 @@ export const {
   auth,
 } = NextAuth({
   // debug: true,
+  secret: process.env.NEXTAUTH_SECRET,
   session: {
     strategy: 'jwt',
   },
@@ -39,7 +40,6 @@ export const {
       },
     }),
   ],
-  secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     jwt: async ({ token, user, account, profile, isNewUser }) => {
       // 注意: トークンをログ出力してはダメです。
