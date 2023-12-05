@@ -1,15 +1,11 @@
-import type NextAuthOptions from 'next-auth'
-import NextAuth from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import { auth as fireAuth } from '../_common/libs/firebase/admin'
+import { randomBytes, randomUUID } from 'crypto'
+import { auth } from '../_common/libs/firebase/admin'
+import { NextAuthOptions } from 'next-auth'
 
-export const {
-  handlers: { GET, POST },
-  auth,
-} = NextAuth({
+export const options: NextAuthOptions = {
   // debug: true,
-  secret: process.env.NEXTAUTH_SECRET,
   session: {
     strategy: 'jwt',
   },
@@ -24,7 +20,7 @@ export const {
       authorize: async ({ idToken }: any, _req) => {
         if (idToken) {
           try {
-            const decoded = await fireAuth.verifyIdToken(idToken)
+            const decoded = await auth.verifyIdToken(idToken)
             if (decoded) {
               return {
                 id: decoded.uid,
@@ -40,6 +36,7 @@ export const {
       },
     }),
   ],
+  secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     jwt: async ({ token, user, account, profile, isNewUser }) => {
       // 注意: トークンをログ出力してはダメです。
@@ -77,4 +74,4 @@ export const {
       }
     },
   },
-})
+}

@@ -9,9 +9,9 @@ import {
 } from '@heroicons/react/24/outline'
 import LoginButton from '../../ui-parts/authButton/loginButton'
 import LogoutButton from '../../ui-parts/authButton/logoutButton'
-import { auth } from '@/app/next-auth'
+import { getServerSession } from 'next-auth'
 const Header = async () => {
-  const session = await auth()
+  const session = await getServerSession()
   return (
     <header className="flex items-center py-6 px-6 shadow-sm">
       <div className="">
