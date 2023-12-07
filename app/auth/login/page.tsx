@@ -8,7 +8,6 @@ import { useMutateAuth } from '@/app/_features/auth/hooks/useMutateAuth'
 
 const AuthLogin = (req: NextApiRequest) => {
   const session = useSession()
-  console.log(session.data?.user)
 
   const { email, setEmail, password, setPassword, signIn, singUp, message } =
     useMutateAuth()

@@ -8,8 +8,8 @@ import {
 } from '@/app/_features/factory/api'
 import { FavoriteButton } from '@/app/_features/favorite/components/favoriteButtton'
 import { getReviewsByFactoryId } from '@/app/_features/review/api'
-import { auth } from '@/app/next-auth'
 import { UserIcon } from '@heroicons/react/24/outline'
+import { getServerSession } from 'next-auth'
 import Image from 'next/image'
 import { Suspense } from 'react'
 
@@ -22,7 +22,7 @@ export default async function FactoryDetail({
   const reviews = await getReviewsByFactoryId(params.id)
   const genres = await getFactoryGenres(params.id)
   const features = await getFactoryFeatures(params.id)
-  const session = await auth()
+  const session = await getServerSession()
 
   const {
     id,

@@ -1,5 +1,4 @@
 // 'use server'
-import { authHeaderServerComponents } from '@/app/_components/functional/authHeader'
 import { UserCredential } from 'firebase/auth'
 export const getUser = async (id: string) => {
   // const authorization = authHeaderServerComponents()

@@ -5,7 +5,7 @@ import { auth } from '../_common/libs/firebase/admin'
 import { NextAuthOptions } from 'next-auth'
 
 export const options: NextAuthOptions = {
-  // debug: true,
+  debug: true,
   session: {
     strategy: 'jwt',
   },
@@ -21,6 +21,7 @@ export const options: NextAuthOptions = {
         if (idToken) {
           try {
             const decoded = await auth.verifyIdToken(idToken)
+
             if (decoded) {
               return {
                 id: decoded.uid,
@@ -39,9 +40,6 @@ export const options: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     jwt: async ({ token, user, account, profile, isNewUser }) => {
-      // 注意: トークンをログ出力してはダメです。
-      // console.log('in jwt', { user, token, account, profile })
-
       if (user) {
         token.user = user
         const u = user as any
@@ -50,19 +48,9 @@ export const options: NextAuthOptions = {
       if (account) {
         token.accessToken = account.access_token
       }
-      // if (account?.provider === 'google') {
-      //   // Google認証時にUUIDを生成
-      //   user.id = uuidv4()
-      // }
       return token
     },
     session: async ({ session, token }) => {
-      // session.user.role = token.role
-      // session.user.id = token.user.id
-      // console.log(token.emailVerified)
-      // console.log(token.uid)
-      // console.log(session)
-
       token.accessToken
       return {
         ...session,
