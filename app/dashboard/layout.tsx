@@ -9,7 +9,7 @@ import {
 } from '@heroicons/react/24/outline'
 const Dashboard = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="flex items-start justify-center   sm:flex-col">
+    <div className="flex gap-10 sm:flex-col">
       <aside className="flex-shrink-0 basis-[320px]  p-5 mx-auto border-r border-color-main-400 sm:w-full sm:basis-0">
         <ul>
           <li>
@@ -58,7 +58,7 @@ const Dashboard = ({ children }: { children: React.ReactNode }) => {
           </li>
         </ul>
       </aside>
-      <div className="flex-1">
+      <div className="flex-1 py-10">
         <Container>{children}</Container>
       </div>
     </div>

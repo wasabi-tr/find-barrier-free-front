@@ -22,7 +22,7 @@ const FactoryItem: FC<Props> = async ({ factory }) => {
     <li>
       <Link
         href={`/factory/${id}`}
-        className="flex items-start gap-2 relative py-8 px-4  border-2 border-color-main-400 rounded-md transition duration-300 hover:border-color-main-600 hover:bg-color-main-200 lg:flex-col"
+        className="flex items-start gap-2 relative py-8 px-4  border border-color-main-400 rounded-md transition duration-300 hover:border-color-main-600 hover:bg-color-main-200 lg:flex-col"
       >
         {/* <Link
         href={`/factory/${id}`}
@@ -31,7 +31,7 @@ const FactoryItem: FC<Props> = async ({ factory }) => {
         <figure className="relative basis-[240px] w-[240px] aspect-video min-h-0 mx-auto ">
           <Image
             src={imageUrl[0] || dummyImagePath}
-            alt={`test`}
+            alt={``}
             fill
             className="w-full h-auto object-contain"
           />

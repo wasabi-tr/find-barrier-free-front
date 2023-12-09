@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { useMutateAuth } from '@/app/_features/auth/hooks/useMutateAuth'
 
-const AuthLogin = (req: NextApiRequest) => {
+const AuthLogin = () => {
   const session = useSession()
 
   const { email, setEmail, password, setPassword, signIn, singUp, message } =
