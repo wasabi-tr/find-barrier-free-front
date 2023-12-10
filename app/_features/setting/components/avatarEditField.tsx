@@ -65,7 +65,7 @@ const AvatarEditField = ({ user }: { user: User }) => {
           />
           <label
             htmlFor="avatar"
-            className="px-4 py-3 border border-color-main-400 rounded-lg transition hover:bg-color-main-200 w-[300px]  "
+            className="px-4 py-3 border border-color-main-400 rounded-lg transition cursor-pointer hover:bg-color-main-200 w-[300px]  "
           >
             プロフィール画像を変更する
           </label>
@@ -75,15 +75,6 @@ const AvatarEditField = ({ user }: { user: User }) => {
             </button>
           )}
         </div>
-        {/* <>
-            <button
-              type="button"
-              onClick={handleClick}
-              className="px-4 py-3 border border-color-main-400 rounded-lg transition hover:bg-color-main-200 "
-            >
-              プロフィール画像を変更する
-            </button>
-          </> */}
       </div>
     </form>
   )

@@ -19,6 +19,7 @@
     "@tanstack/react-query": "^5.12.2",
     "@tanstack/react-query-devtools": "^5.13.3",
     "axios": "^1.6.1",
+    "date-fns": "^2.30.0",
     "firebase": "^10.6.0",
     "firebase-admin": "^11.11.1",
     "markuplint": "^3.14.0",

@@ -5,7 +5,7 @@ export const getReviewsByFactoryId = async (
 ): Promise<Review[]> => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/review/${factoryId}`
+      `${process.env.API_URL}/review/factory/${factoryId}`
     )
     const reviews = await res.json()
     return reviews
@@ -15,7 +15,7 @@ export const getReviewsByFactoryId = async (
 }
 export const getReviewsByUserId = async (userId: string): Promise<Review[]> => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/factory`)
+    const res = await fetch(`${process.env.API_URL}/review/user/${userId}`)
     const reviews = await res.json()
     return reviews
   } catch (error: any) {
