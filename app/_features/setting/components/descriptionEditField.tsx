@@ -1,10 +1,14 @@
 'use client'
 import { User } from '@/app/_common/types'
-import { useQueryClient } from '@tanstack/react-query'
+import { updateDescription } from '@/app/_components/functional/actons/updateUser'
+import { useRouter } from 'next/navigation'
 import React, { ChangeEvent, memo, useState } from 'react'
-const DescriptionEditField = () => {
-  const queryClient = useQueryClient()
-  const user = queryClient.getQueryData<User>(['user'])
+import { useFormState } from 'react-dom'
+const initialState = {
+  message: null,
+}
+const DescriptionEditField = ({ user }: { user: User }) => {
+  const router = useRouter()
   const [editedDescription, setEditedDescription] = useState<
     string | undefined
   >('')
@@ -20,10 +24,18 @@ const DescriptionEditField = () => {
   ) => {
     setEditedDescription(e.target.value)
   }
+  const [state, update] = useFormState(updateDescription, initialState)
+
   return (
-    <form action="">
+    <form
+      action={async (data) => {
+        await update(data)
+        router.refresh()
+      }}
+    >
       <div className="flex flex-col items-start gap-5 relative p-8  border border-color-main-400 rounded-md  ">
         <h2 className="text-lg">自己紹介</h2>
+        <input type="hidden" name="id" value={user?.id} />
         {isEdit ? (
           <>
             <textarea

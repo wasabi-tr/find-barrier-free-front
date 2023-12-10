@@ -1,26 +1,26 @@
-'use client'
-import { userUpdate } from '@/app/_components/functional/actons/userUpdate'
-import Spinner from '@/app/_components/ui-parts/spinner'
+import { authHeaderServerComponents } from '@/app/_components/functional/authHeader'
 import AvatarEditField from '@/app/_features/setting/components/avatarEditField'
 import DescriptionEditField from '@/app/_features/setting/components/descriptionEditField'
 import NickNameEditFieldCopy from '@/app/_features/setting/components/nickNameEditField'
-import { useQueryUser } from '@/app/_features/user/hooks/useQueryUser'
-import { ChangeEvent, memo, useState } from 'react'
+import { options } from '@/app/next-auth'
+import { getServerSession } from 'next-auth'
+import { memo } from 'react'
 
-const DashboardSetting = () => {
-  const { data: user, isError, isLoading } = useQueryUser()
-  if (isError) return <p>ユーザー情報を取得できませんでした。</p>
-  if (isLoading) return <Spinner />
+const DashboardSetting = async () => {
+  const session = await getServerSession(options)
+  const authorization = authHeaderServerComponents()
+  const res = await fetch(`${process.env.API_URL}/user/${session?.user.id}`, {
+    headers: { ...authorization },
+  })
+  const user = await res.json()
 
   return (
     <section>
-      {/* <form action={userUpdate}> */}
       <div className="grid gap-16">
-        <NickNameEditFieldCopy />
-        <DescriptionEditField />
-        <AvatarEditField />
+        <NickNameEditFieldCopy user={user} />
+        <DescriptionEditField user={user} />
+        <AvatarEditField user={user} />
       </div>
-      {/* </form> */}
     </section>
   )
 }
