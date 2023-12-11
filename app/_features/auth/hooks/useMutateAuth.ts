@@ -33,6 +33,8 @@ export const useMutateAuth = () => {
       setPassword('')
       setMessage('ログインに成功しました。')
     } catch (e: any) {
+      console.log(e)
+
       //   setEmail('')
       //   setPassword('')
       setMessage('メールアドレスまたはパスワードが間違えています。')
@@ -59,7 +61,9 @@ export const useMutateAuth = () => {
     } catch (e: any) {
       //   setEmail('')
       //   setPassword('')
-      setMessage('メールアドレスまたはパスワードが間違えています。')
+      if (e.message === 'Firebase: Error (auth/email-already-in-use).') {
+        setMessage('このメールアドレスは既に使用されています。')
+      }
       console.log(e.message)
     }
   }, [auth, email, password, setMessage])

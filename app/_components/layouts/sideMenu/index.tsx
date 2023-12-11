@@ -79,7 +79,10 @@ const SideMenu = () => {
               </Link>
             </li>
             <li>
-              <Link href={'/mypage'} className="flex items-center gap-2 py-4">
+              <Link
+                href={'/dashboard'}
+                className="flex items-center gap-2 py-4"
+              >
                 <span>
                   <UserIcon className="w-6 h-6 text-color-main-800" />
                 </span>

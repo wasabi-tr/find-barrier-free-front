@@ -7,9 +7,9 @@ import {
 } from '@heroicons/react/24/outline'
 import { signIn } from 'next-auth/react'
 import LoginButton from '../../ui-parts/authButton/loginButton'
-import { auth } from '@/app/next-auth'
+import { getServerSession } from 'next-auth'
 const BottomNavigation = async () => {
-  const session = await auth()
+  const session = await getServerSession()
 
   return (
     <div className="hidden sm:block fixed bottom-0 left-0 w-full">
@@ -39,7 +39,7 @@ const BottomNavigation = async () => {
         <li>
           {session?.user ? (
             <Link
-              href={'/mypage'}
+              href={'/dashboard'}
               className="flex flex-col justify-center items-center gap-1 p-3 rounded-md transition  hover:bg-color-main-200 text-xs h-full"
             >
               <span>

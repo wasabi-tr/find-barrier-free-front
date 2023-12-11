@@ -1,14 +1,12 @@
 export type User = {
   id: string
+  slug: string
   createdAt: string
   updatedAt: string
   email: string
-  hashedPassword: string
   nickName: string
   description: string
   avatarUrl: string
-  reviews: Review[]
-  favorites: Favorite[]
 }
 
 export type Review = {

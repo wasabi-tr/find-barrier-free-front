@@ -5,7 +5,7 @@ import { useSession } from 'next-auth/react'
 import {
   favoriteActions,
   getFavoriteActions,
-} from '@/app/_components/functional/actons/favoriteActions'
+} from '@/app/_components/functional/actions/favoriteActions'
 
 export const FavoriteButton = ({ factoryId }: { factoryId: string }) => {
   const session = useSession()

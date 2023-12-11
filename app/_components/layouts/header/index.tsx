@@ -9,9 +9,9 @@ import {
 } from '@heroicons/react/24/outline'
 import LoginButton from '../../ui-parts/authButton/loginButton'
 import LogoutButton from '../../ui-parts/authButton/logoutButton'
-import { auth } from '@/app/next-auth'
+import { getServerSession } from 'next-auth'
 const Header = async () => {
-  const session = await auth()
+  const session = await getServerSession()
   return (
     <header className="flex items-center py-6 px-6 shadow-sm">
       <div className="">
@@ -49,7 +49,7 @@ const Header = async () => {
         <li>
           {session?.user ? (
             <Link
-              href={'/mypage'}
+              href={'/dashboard'}
               className="flex items-center gap-2 p-3 rounded-md transition  hover:bg-color-main-200 "
             >
               <span>
@@ -69,7 +69,7 @@ const Header = async () => {
       </ul>
       {/* <>
         <Link
-          href={'/mypage'}
+          href={'/dashboard'}
           className="flex items-center gap-2 border border-color-main-400 py-2 px-8 rounded-3xl transition duration-300 ml-auto hover:bg-color-main-200 sm:hidden"
         >
           <span>
