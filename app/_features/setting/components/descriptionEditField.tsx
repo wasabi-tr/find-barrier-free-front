@@ -1,6 +1,6 @@
 'use client'
 import { User } from '@/app/_common/types'
-import { updateDescription } from '@/app/_components/functional/actons/updateUser'
+import { updateDescription } from '@/app/_components/functional/actions/updateUser'
 import { useRouter } from 'next/navigation'
 import React, { ChangeEvent, memo, useState } from 'react'
 import { useFormState } from 'react-dom'

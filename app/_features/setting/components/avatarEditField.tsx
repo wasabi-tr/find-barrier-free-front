@@ -1,7 +1,7 @@
 'use client'
 import { usePreviewImage } from '@/app/_common/hooks/usePreviewImage'
 import { User } from '@/app/_common/types'
-import { updateAvatar } from '@/app/_components/functional/actons/updateUser'
+import { updateAvatar } from '@/app/_components/functional/actions/updateUser'
 import { UserIcon } from '@heroicons/react/24/solid'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
