@@ -6,7 +6,6 @@ import {
 } from 'firebase/auth'
 
 import { signIn as signInByNextAuth } from 'next-auth/react'
-import { userMutateUser } from '../../user/api/userMutateUser'
 import { createUser } from '../../user/api'
 
 export const useMutateAuth = () => {

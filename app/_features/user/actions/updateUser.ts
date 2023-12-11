@@ -1,10 +1,37 @@
 'use server'
 import { z } from 'zod'
-import { updateUser } from '@/app/_features/user/api'
+// import { updateUser } from '@/app/_features/user/api'
 import { putImage } from '@/app/_common/libs/r2/storage'
+import { authHeaderServerComponents } from '@/app/_components/functional/authHeader'
 const NickNameSchema = z.object({
   nickName: z.string().min(1, { message: '1文字以上入力してください' }),
 })
+
+export const updateUser = async ({
+  id,
+  nickName,
+  description,
+  avatarUrl,
+}: {
+  id: string
+  nickName?: string
+  description?: string
+  avatarUrl?: string
+}) => {
+  const authorization = authHeaderServerComponents()
+  const res = await fetch(`${process.env.API_URL}/user`, {
+    method: 'PATCH',
+    headers: {
+      ...authorization,
+    },
+    body: JSON.stringify({ id, nickName, description, avatarUrl }),
+  })
+  if (!res.ok) return
+
+  const responseUser = await res.json()
+  return responseUser
+}
+
 export const updateNickName = async (prevState: any, formData: FormData) => {
   const id = formData.get('id') as string
   const nickName = formData.get('nickName') as string
