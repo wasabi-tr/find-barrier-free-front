@@ -26,6 +26,8 @@ export type Factory = {
   id: string
   createdAt: string
   updatedAt: string
+  title: string
+  description: string
   name: string
   zipcode: string
   prefecture: string
@@ -55,16 +57,16 @@ export type Feature = {
 
 export type GenreToFactory = {
   genreId: string
-  genre: Genre
   factoryId: string
-  factory: Factory
+  genre: Genre
+  // factory: Factory
 }
 
 export type FactoryFeature = {
   featureId: string
-  feature: Feature
   factoryId: string
-  factory: Factory
+  feature: Feature
+  // factory: Factory
 }
 
 export type Favorite = {

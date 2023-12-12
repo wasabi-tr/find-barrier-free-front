@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import { getAllFactory } from '../api'
 import FactoryItem from './factoryItem'
 
-const FactoryList: FC = async () => {
+const FactoryList = async () => {
   const factories = await getAllFactory()
 
   return (
@@ -13,5 +13,4 @@ const FactoryList: FC = async () => {
     </ul>
   )
 }
-
 export default FactoryList

@@ -28,3 +28,15 @@ export const getFavorite = async (userId: string, factoryId: string) => {
   if (!res.ok) return
   return await res.json()
 }
+export const getAllFavoriteByUserId = async (userId: string) => {
+  const authorization = authHeaderServerComponents()
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/favorite/user/?useId=${userId}`,
+    {
+      headers: { ...authorization },
+    }
+  )
+  if (!res.ok) return
+  return await res.json()
+}

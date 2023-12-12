@@ -1,5 +1,5 @@
+'use client'
 import React from 'react'
-import { signIn, signOut } from 'next-auth/react' // 1⃣
 import Link from 'next/link'
 import SideMenu from '../sideMenu'
 import {
@@ -10,8 +10,9 @@ import {
 import LoginButton from '../../ui-parts/authButton/loginButton'
 import LogoutButton from '../../ui-parts/authButton/logoutButton'
 import { getServerSession } from 'next-auth'
-const Header = async () => {
-  const session = await getServerSession()
+import { useSession } from 'next-auth/react'
+const Header = () => {
+  const session = useSession()
   return (
     <header className="flex items-center py-6 px-6 shadow-sm">
       <div className="">
@@ -47,7 +48,7 @@ const Header = async () => {
           </Link>
         </li>
         <li>
-          {session?.user ? (
+          {session?.data?.user ? (
             <Link
               href={'/dashboard'}
               className="flex items-center gap-2 p-3 rounded-md transition  hover:bg-color-main-200 "
