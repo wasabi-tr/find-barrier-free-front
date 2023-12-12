@@ -1,3 +1,4 @@
+'use client'
 import Link from 'next/link'
 import React from 'react'
 import {
@@ -5,11 +6,11 @@ import {
   HomeIcon,
   BuildingLibraryIcon,
 } from '@heroicons/react/24/outline'
-import { signIn } from 'next-auth/react'
+import { signIn, useSession } from 'next-auth/react'
 import LoginButton from '../../ui-parts/authButton/loginButton'
 import { getServerSession } from 'next-auth'
-const BottomNavigation = async () => {
-  const session = await getServerSession()
+const BottomNavigation = () => {
+  const session = useSession()
 
   return (
     <div className="hidden sm:block fixed bottom-0 left-0 w-full">
@@ -37,7 +38,7 @@ const BottomNavigation = async () => {
           </Link>
         </li>
         <li>
-          {session?.user ? (
+          {session?.data?.user ? (
             <Link
               href={'/dashboard'}
               className="flex flex-col justify-center items-center gap-1 p-3 rounded-md transition  hover:bg-color-main-200 text-xs h-full"

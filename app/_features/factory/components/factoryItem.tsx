@@ -13,9 +13,16 @@ type Props = {
 }
 
 const FactoryItem: FC<Props> = async ({ factory }) => {
-  const { id, name, zipcode, prefecture, city, addressDetail, imageUrl } =
-    factory
-  const genres = await getFactoryGenres(id)
+  const {
+    id,
+    name,
+    zipcode,
+    prefecture,
+    city,
+    addressDetail,
+    imageUrl,
+    genres,
+  } = factory
   const reviews = await getReviewsByFactoryId(id)
 
   return (
@@ -42,10 +49,10 @@ const FactoryItem: FC<Props> = async ({ factory }) => {
             <ul className="flex gap-1 mt-2">
               {genres.map((genre) => (
                 <li
-                  key={genre.id}
+                  key={genre.genre.id}
                   className="py-1 px-4 bg-slate-200 rounded-lg text-sm"
                 >
-                  #{genre.name}
+                  #{genre.genre.name}
                 </li>
               ))}
             </ul>

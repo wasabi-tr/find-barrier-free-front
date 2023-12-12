@@ -4,19 +4,18 @@ import { cookies } from 'next/headers'
 
 export const getAllFactory = async (): Promise<Factory[]> => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/factory`, {
-      credentials: 'include',
-    })
+    const res = await fetch(`${process.env.API_URL}/factory`)
     const factories = await res.json()
+
     return factories
   } catch (error: any) {
     throw new Error(error)
   }
 }
 
-export const getFactoryById = async (id: string) => {
+export const getFactoryById = async (id: string): Promise<Factory> => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/factory/${id}`)
+    const res = await fetch(`${process.env.API_URL}/factory/${id}`)
     const factory = await res.json()
     return factory
   } catch (error: any) {
@@ -34,7 +33,7 @@ export const createFactory = async (
     const bearer = theme?.value
     console.log(bearer)
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/factory`, {
+    const res = await fetch(`${process.env.API_URL}/factory`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

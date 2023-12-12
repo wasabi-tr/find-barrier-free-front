@@ -1,11 +1,6 @@
 import Map from '@/app/_components/ui-element/googleMap'
 import Spinner from '@/app/_components/ui-parts/spinner'
-import {
-  getAllFactory,
-  getFactoryById,
-  getFactoryFeatures,
-  getFactoryGenres,
-} from '@/app/_features/factory/api'
+import { getAllFactory, getFactoryById } from '@/app/_features/factory/api'
 import { FavoriteButton } from '@/app/_features/favorite/components/favoriteButtton'
 import { getReviewsByFactoryId } from '@/app/_features/review/api'
 import { UserIcon } from '@heroicons/react/24/outline'
@@ -20,9 +15,6 @@ export default async function FactoryDetail({
 }) {
   const factory = await getFactoryById(params.id)
   const reviews = await getReviewsByFactoryId(params.id)
-  const genres = await getFactoryGenres(params.id)
-  const features = await getFactoryFeatures(params.id)
-  const session = await getServerSession()
 
   const {
     id,
@@ -40,6 +32,8 @@ export default async function FactoryDetail({
     holidays,
     siteUrl,
     imageUrl,
+    genres,
+    features,
   } = factory
 
   // console.log(factory)
@@ -81,12 +75,12 @@ export default async function FactoryDetail({
           <div className="">
             {features && features.length > 0 && (
               <ul className="flex gap-1 mt-2">
-                {features.map((genre) => (
+                {features.map((feature) => (
                   <li
-                    key={genre.id}
+                    key={feature.feature.id}
                     className="py-1 px-4 bg-slate-200 rounded-lg text-sm"
                   >
-                    {genre.name}
+                    {feature.feature.name}
                   </li>
                 ))}
               </ul>
@@ -100,10 +94,10 @@ export default async function FactoryDetail({
               <ul className="flex gap-1 mt-2">
                 {genres.map((genre) => (
                   <li
-                    key={genre.id}
+                    key={genre.genre.id}
                     className="py-1 px-4 bg-slate-200 rounded-lg text-sm"
                   >
-                    #{genre.name}
+                    #{genre.genre.name}
                   </li>
                 ))}
               </ul>
