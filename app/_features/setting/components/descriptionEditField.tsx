@@ -34,11 +34,14 @@ const DescriptionEditField = ({ user }: { user: User }) => {
       }}
     >
       <div className="flex flex-col items-start gap-5 relative p-8  border border-color-main-400 rounded-md  ">
-        <h2 className="text-lg">自己紹介</h2>
+        <label htmlFor="description" className="text-lg">
+          自己紹介
+        </label>
         <input type="hidden" name="id" value={user?.id} />
         {isEdit ? (
           <>
             <textarea
+              id="description"
               name="description"
               value={editedDescription ?? user?.description}
               onChange={handleChange}

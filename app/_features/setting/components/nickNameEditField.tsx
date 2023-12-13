@@ -33,17 +33,20 @@ const NickNameEditField = ({ user }: { user: User }) => {
       }}
     >
       <div className="flex flex-col items-start gap-5 relative p-8 border border-color-main-400 rounded-md  ">
-        <h2 className="text-lg">ユーザーネーム</h2>
+        <label htmlFor="nickName" className="text-lg">
+          ユーザーネーム
+        </label>
         <input type="hidden" name="id" value={user?.id} />
         {isEdit ? (
           <>
             <div className="grid gap-1 w-full">
               <input
+                id="nickName"
                 type="text"
                 name="nickName"
                 value={editedName ?? user?.nickName}
                 onChange={handleChange}
-                className="p-2  rounded-lg bg-white w-full border border-color-main-400 "
+                className="py-3 px-2  rounded-lg bg-white w-full border border-color-main-400 "
               />
               {state?.errors && (
                 <p className="text-red-600 text-sm" aria-live="polite">

@@ -31,7 +31,9 @@ const AvatarEditField = ({ user }: { user: User }) => {
       }}
     >
       <div className="relative flex flex-col items-start gap-5 p-8 border border-color-main-400 rounded-md  ">
-        <h2 className="text-lg">プロフィール画像</h2>
+        <label htmlFor="avatar" className="text-lg">
+          プロフィール画像
+        </label>
         <input type="hidden" name="id" value={user?.id} />
         <div className="flex items-center gap-8 w-full">
           <div className="flex items-center justify-center relative w-20 h-20 rounded-full border border-color-main-200 overflow-hidden ">

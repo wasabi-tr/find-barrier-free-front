@@ -86,7 +86,7 @@ export const deleteFactory = async (id: string) => {
 
 export const getGenres = async (): Promise<Genre[]> => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/factory/genres`)
+    const res = await fetch(`${process.env.API_URL}/factory/genres`)
     const genres = await res.json()
     return genres
   } catch (error: any) {

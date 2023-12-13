@@ -27,6 +27,7 @@ const config: Config = {
         'color-blue-600': '#3460FB',
         'color-blue-700': '#264AF4',
         'color-blue-800': '#0031D8',
+        'color-green-50': '#E6F5EC',
         'color-green-600': '#259D63',
         'color-green-700': '#1D8B56',
         'color-green-800': '#197A4B',

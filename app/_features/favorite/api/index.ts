@@ -8,7 +8,7 @@ type Props = {
 export const switchFavorite = async ({ method, userId, factoryId }: Props) => {
   const authorization = authHeaderServerComponents()
 
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/favorite`, {
+  const res = await fetch(`${process.env.API_URL}/favorite`, {
     method,
     headers: { ...authorization },
     body: JSON.stringify({ userId, factoryId }),
@@ -20,7 +20,7 @@ export const getFavorite = async (userId: string, factoryId: string) => {
   const authorization = authHeaderServerComponents()
 
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/favorite?useId=${userId}&factoryId=${factoryId}`,
+    `${process.env.API_URL}/favorite?useId=${userId}&factoryId=${factoryId}`,
     {
       headers: { ...authorization },
     }
@@ -32,7 +32,7 @@ export const getAllFavoriteByUserId = async (userId: string) => {
   const authorization = authHeaderServerComponents()
 
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/favorite/user/?useId=${userId}`,
+    `${process.env.API_URL}/favorite/user/?useId=${userId}`,
     {
       headers: { ...authorization },
     }

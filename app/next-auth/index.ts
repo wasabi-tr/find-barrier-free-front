@@ -5,7 +5,7 @@ import { auth } from '../_common/libs/firebase/admin'
 import { NextAuthOptions } from 'next-auth'
 
 export const options: NextAuthOptions = {
-  debug: true,
+  // debug: true,
   session: {
     strategy: 'jwt',
   },
