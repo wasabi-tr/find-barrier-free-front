@@ -1,3 +1,6 @@
+'use server'
+import { revalidatePath } from 'next/cache'
+import { redirect } from 'next/navigation'
 import { z } from 'zod'
 
 const factoryFormSchema = z.object({
@@ -5,9 +8,19 @@ const factoryFormSchema = z.object({
   description: z.string().min(1, { message: '入力してください' }),
 })
 
-export const actions = async (prevState: any, formData: FormData) => {
+type State = {
+  errors?: {
+    name?: string[]
+    description?: string[]
+  }
+  message: string | null
+}
+export const actions = async (
+  prevState: State,
+  formData: FormData
+): Promise<State> => {
   const name = formData.get('name')
-  const description = formData.get('name')
+  const description = formData.get('description')
   const validatedFields = factoryFormSchema.safeParse({
     name,
     description,
@@ -19,5 +32,13 @@ export const actions = async (prevState: any, formData: FormData) => {
     }
   }
 
-  console.log(formData)
+  try {
+    // 施設を作成する処理
+  } catch (error) {
+    return {
+      message: '施設の登録に失敗しました。',
+    }
+  }
+  revalidatePath('/dashboard/factory/')
+  redirect('/dashboard/factory')
 }

@@ -1,8 +1,10 @@
 'use client'
 import { useFormState, useFormStatus } from 'react-dom'
 import { actions } from '../actions/factoryRegisterActions'
+import { Button } from '@/app/_components/ui-parts/button'
 
 const initialState = {
+  errors: {},
   message: null,
 }
 export const RegisterForm = () => {
@@ -14,33 +16,36 @@ export const RegisterForm = () => {
   return (
     <form action={register}>
       <div className="grid gap10">
-        <div className="relative flex flex-col items-start gap-5  ">
-          <label htmlFor="name" className="text-lg">
-            施設名<span>必須</span>
+        <div className="relative flex flex-col items-start gap-2  ">
+          <label htmlFor="name" className="flex items-center gap-2 ">
+            施設名<span className="text-sm text-red-600  ">必須</span>
           </label>
           <div className="relative w-full">
             <input
               id="name"
               name="name"
               type="text"
-              className="py-3 px-2  rounded-lg bg-white w-full border border-color-main-600 "
+              className={`p-4 rounded-lg bg-white w-full ${
+                state?.errors?.name
+                  ? 'border-2 border-red-600'
+                  : 'border border-color-main-600'
+              }`}
+              aria-describedby="name-error"
             />
           </div>
+          {state?.errors?.name && (
+            <p
+              id="name-error"
+              className="text-red-600 text-sm"
+              aria-live="polite"
+            >
+              {state.errors.name}
+            </p>
+          )}
         </div>
-        <div className="relative flex flex-col items-start gap-5  ">
-          <label htmlFor="description" className="text-lg">
-            説明<span>必須</span>
-          </label>
-          <div className="relative w-full">
-            <input
-              id="description"
-              name="description"
-              type="text"
-              className="py-3 px-2  rounded-lg bg-white w-full border border-color-main-600 "
-            />
-          </div>
+        <div className="flex justify-center mt-5">
+          <Button green>施設を登録する</Button>
         </div>
-        <button>送信</button>
       </div>
     </form>
   )

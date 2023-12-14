@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import React, { ChangeEvent, memo, useState } from 'react'
 import { useFormState, useFormStatus } from 'react-dom'
 import { updateNickName } from '../../user/actions/updateUser'
+import { Button } from '@/app/_components/ui-parts/button'
 const initialState = {
   message: null,
 }
@@ -54,17 +55,17 @@ const NickNameEditField = ({ user }: { user: User }) => {
                 </p>
               )}
             </div>
-            <div className="flex items-center justify-end gap-1 w-full">
+            <div className="flex items-center justify-end gap-5 w-full">
               <button
                 type="button"
                 onClick={handleClick}
-                className="px-4 py-3 rounded-lg text-color-main-600  transition hover:bg-color-main-200"
+                className="text-color-main-600 border-b border-color-main-600 transition hover:text-color-main-800 hover:border-color-main-800 "
               >
                 キャンセルする
               </button>
-              <button className="px-4 py-3 border border-color-main-400 rounded-lg transition hover:bg-color-main-200 ">
+              <Button green small>
                 {pending ? '保存中...' : '保存する'}
-              </button>
+              </Button>
             </div>
           </>
         ) : (

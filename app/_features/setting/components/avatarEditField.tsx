@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 import React, { memo, useState } from 'react'
 import { useFormState } from 'react-dom'
 import { updateAvatar } from '../../user/actions/updateUser'
+import { Button } from '@/app/_components/ui-parts/button'
 const initialState = {
   message: null,
 }
@@ -72,9 +73,9 @@ const AvatarEditField = ({ user }: { user: User }) => {
             プロフィール画像を変更する
           </label>
           {isEdit && (
-            <button className="px-4 py-3 border border-color-main-400 rounded-lg transition hover:bg-color-main-200 ">
+            <Button green small>
               保存する
-            </button>
+            </Button>
           )}
         </div>
       </div>

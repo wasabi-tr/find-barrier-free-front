@@ -2,8 +2,9 @@
 import { User } from '@/app/_common/types'
 import { useRouter } from 'next/navigation'
 import React, { ChangeEvent, memo, useState } from 'react'
-import { useFormState } from 'react-dom'
+import { useFormState, useFormStatus } from 'react-dom'
 import { updateDescription } from '../../user/actions/updateUser'
+import { Button } from '@/app/_components/ui-parts/button'
 const initialState = {
   message: null,
 }
@@ -25,6 +26,7 @@ const DescriptionEditField = ({ user }: { user: User }) => {
     setEditedDescription(e.target.value)
   }
   const [state, update] = useFormState(updateDescription, initialState)
+  const { pending } = useFormStatus()
 
   return (
     <form
@@ -47,17 +49,17 @@ const DescriptionEditField = ({ user }: { user: User }) => {
               onChange={handleChange}
               className="p-2 rounded-lg bg-white w-full border border-color-main-400 min-h-[240px]"
             />
-            <div className="flex items-center justify-end gap-1 w-full">
+            <div className="flex items-center justify-end gap-5 w-full">
               <button
                 type="button"
                 onClick={handleClick}
-                className="px-4 py-3 rounded-lg text-color-main-600  transition hover:bg-color-main-200"
+                className="text-color-main-600 border-b border-color-main-600 transition hover:text-color-main-800 hover:border-color-main-800 "
               >
                 キャンセルする
               </button>
-              <button className="px-4 py-3 border border-color-main-400 rounded-lg transition hover:bg-color-main-200 ">
-                保存する
-              </button>
+              <Button green small>
+                {pending ? '保存中...' : '保存する'}
+              </Button>
             </div>
           </>
         ) : (
