@@ -70,17 +70,17 @@ const SideMenu = () => {
       >
         <div className="w-full border-t border-dotted border-color-main-400">
           <ul className="grid grid-cols-1 w-full mt-4 justify-start">
-            <li>
+            {/* <li>
               <Link href={'/'} className="flex items-center gap-2 py-4">
                 <span>
                   <HomeIcon className="w-6 h-6 text-color-main-800" />
                 </span>
                 ホーム
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link
-                href={'/dashboard'}
+                href={'/dashboard/factory'}
                 className="flex items-center gap-2 py-4"
               >
                 <span>

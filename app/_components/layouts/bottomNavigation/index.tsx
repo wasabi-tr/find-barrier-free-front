@@ -40,7 +40,7 @@ const BottomNavigation = () => {
         <li>
           {session?.data?.user ? (
             <Link
-              href={'/dashboard'}
+              href={'/dashboard/factory'}
               className="flex flex-col justify-center items-center gap-1 p-3 rounded-md transition  hover:bg-color-main-200 text-xs h-full"
             >
               <span>
