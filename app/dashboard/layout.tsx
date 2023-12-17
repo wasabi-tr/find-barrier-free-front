@@ -25,7 +25,7 @@ const Dashboard = ({ children }: { children: React.ReactNode }) => {
                 href={'/dashboard/factory'}
                 className={`flex items-center gap-2 py-5 px-3 rounded-md transition ${
                   pathname === '/dashboard/factory'
-                    ? 'bg-color-green-50 text-color-green-800 font-semibold'
+                    ? 'bg-color-blue-50 text-color-blue-800 font-semibold'
                     : 'hover:bg-color-main-200'
                 } `}
               >
@@ -33,7 +33,7 @@ const Dashboard = ({ children }: { children: React.ReactNode }) => {
                   <BuildingLibraryIcon
                     className={`w-6 h-6  ${
                       pathname === '/dashboard/factory'
-                        ? 'text-color-green-800'
+                        ? 'text-color-blue-800'
                         : 'text-color-main-800'
                     }`}
                   />
@@ -46,7 +46,7 @@ const Dashboard = ({ children }: { children: React.ReactNode }) => {
                 href={'/dashboard/favorite'}
                 className={`flex items-center gap-2 py-5 px-3 rounded-md transition ${
                   pathname === '/dashboard/favorite'
-                    ? 'bg-color-green-50 text-color-green-800 font-semibold'
+                    ? 'bg-color-blue-50 text-color-blue-800 font-semibold'
                     : 'hover:bg-color-main-200'
                 }  `}
               >
@@ -54,7 +54,7 @@ const Dashboard = ({ children }: { children: React.ReactNode }) => {
                   <StarIcon
                     className={`w-6 h-6  ${
                       pathname === '/dashboard/favorite'
-                        ? 'text-color-green-800'
+                        ? 'text-color-blue-800'
                         : 'text-color-main-800'
                     }`}
                   />
@@ -67,7 +67,7 @@ const Dashboard = ({ children }: { children: React.ReactNode }) => {
                 href={'/dashboard/review'}
                 className={`flex items-center gap-2 py-5 px-3 rounded-md transition ${
                   pathname === '/dashboard/review'
-                    ? 'bg-color-green-50 text-color-green-800 font-semibold '
+                    ? 'bg-color-blue-50 text-color-blue-800 font-semibold '
                     : 'hover:bg-color-main-200 '
                 } `}
               >
@@ -75,7 +75,7 @@ const Dashboard = ({ children }: { children: React.ReactNode }) => {
                   <ChatBubbleLeftEllipsisIcon
                     className={`w-6 h-6 ${
                       pathname === '/dashboard/review'
-                        ? 'text-color-green-800'
+                        ? 'text-color-blue-800'
                         : 'text-color-main-800'
                     }`}
                   />
@@ -88,7 +88,7 @@ const Dashboard = ({ children }: { children: React.ReactNode }) => {
                 href={'/dashboard/setting'}
                 className={`flex items-center gap-2 py-5 px-3 rounded-md transition ${
                   pathname === '/dashboard/setting'
-                    ? 'bg-color-green-50 text-color-green-800 font-semibold '
+                    ? 'bg-color-blue-50 text-color-blue-800 font-semibold '
                     : 'hover:bg-color-main-200'
                 }`}
               >
@@ -96,7 +96,7 @@ const Dashboard = ({ children }: { children: React.ReactNode }) => {
                   <Cog6ToothIcon
                     className={`w-6 h-6  ${
                       pathname === '/dashboard/setting'
-                        ? 'text-color-green-800'
+                        ? 'text-color-blue-800'
                         : 'text-color-main-800'
                     }`}
                   />

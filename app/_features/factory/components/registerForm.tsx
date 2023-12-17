@@ -4,6 +4,7 @@ import { actions } from '../actions/factoryRegisterActions'
 import { usePreviewImage } from '@/app/_common/hooks/usePreviewImage'
 import Image from 'next/image'
 import { useSession } from 'next-auth/react'
+import Spinner from '@/app/_components/ui-parts/spinner'
 
 const initialState = {
   errors: {},
@@ -278,17 +279,22 @@ export const RegisterForm = () => {
               定休日
             </label>
             <div className="relative w-full">
-              <div className="">
+              <div className="flex flex-col gap-2">
                 {week.map((day) => (
                   <div key={day.id} className="flex items-center gap-2">
                     <input
                       id={`holiday-${day.id}`}
                       name="holidays"
                       type="checkbox"
-                      className="p-4 rounded-lg bg-white"
+                      className="p-4 rounded-lg bg-white w-4 h-4"
                       value={day.value}
                     />
-                    <label htmlFor={`holiday-${day.id}`}>{day.value}</label>
+                    <label
+                      htmlFor={`holiday-${day.id}`}
+                      className="cursor-pointer"
+                    >
+                      {day.value}
+                    </label>
                   </div>
                 ))}
               </div>
@@ -371,12 +377,12 @@ export const RegisterForm = () => {
             )}
           </div>
           <input type="hidden" name="userId" value={userId} />
-
           <div className="flex justify-center mt-5">
             <button
               className={`px-4 py-3 border border-color-main-400  rounded-lg transition w-[320px] h-16 hover:bg-color-main-200 `}
+              disabled={pending}
             >
-              上記の内容で登録する
+              {pending ? '登録中...' : '上記の内容で登録する'}
             </button>
           </div>
         </div>

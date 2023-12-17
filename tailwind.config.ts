@@ -24,6 +24,7 @@ const config: Config = {
         'color-focus': '#CD820A',
         'color-success': '#259D63',
         'color-error': '#EC0000',
+        'color-blue-50': '#E8F1FE',
         'color-blue-600': '#3460FB',
         'color-blue-700': '#264AF4',
         'color-blue-800': '#0031D8',

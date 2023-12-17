@@ -4,9 +4,6 @@ import { redirect } from 'next/navigation'
 import { z } from 'zod'
 import { createFactory } from '../api'
 import { putImage } from '@/app/_common/libs/r2/storage'
-import { getServerSession } from 'next-auth'
-import { options } from '@/app/next-auth'
-import { getServerActionSession } from '@/app/_components/functional/serverActionSession'
 
 const factoryFormSchema = z.object({
   name: z.string().min(1, { message: '入力してください' }),
@@ -20,7 +17,7 @@ const factoryFormSchema = z.object({
   businessHours: z.string(),
   holidays: z.string(),
   siteUrl: z.string(),
-  imageUrl: z.array(z.string()),
+  imageUrl: z.array(z.string().optional()),
   userId: z.string(),
 })
 
@@ -48,10 +45,9 @@ export const actions = async (
   formData: FormData
 ): Promise<State> => {
   const imageFiles = formData.getAll('imageUrl') as File[]
-  //fileがundefinedのときに.undefinedがになってしまう。
 
-  const factoryImageUrlsPromises = imageFiles?.map((imageFile) => {
-    return putImage(imageFile, 'factory')
+  const factoryImageUrlsPromises = imageFiles.flatMap((imageFile) => {
+    return imageFile.size ? [putImage(imageFile, 'factory')] : []
   })
 
   const factoryImageUrls = await Promise.all(factoryImageUrlsPromises)
@@ -79,9 +75,10 @@ export const actions = async (
       message: 'エラーが発生しました。',
     }
   }
+  console.log(validatedFields.data)
 
   try {
-    // const res = await createFactory(validatedFields.data)
+    const res = await createFactory(validatedFields.data)
     revalidatePath('/dashboard/factory/')
     redirect('/dashboard/factory')
   } catch (error) {

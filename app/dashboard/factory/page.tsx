@@ -10,7 +10,7 @@ const DashboardFactory = async () => {
       <div className="flex justify-center mt-10">
         <Link
           href={'/dashboard/factory/register'}
-          className="flex items-center justify-center gap-2 p-3 w-[320px] h-14 rounded-md transition bg-color-green-700 text-white  hover:bg-color-green-800 "
+          className="flex items-center justify-center gap-2 p-3 w-[320px] h-14 rounded-md transition bg-color-blue-700 text-white  hover:bg-color-blue-800 "
         >
           <span>
             <PlusIcon className="w-6 h-6 text-white" />

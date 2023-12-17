@@ -95,7 +95,7 @@ export type EditedFactory = {
   businessHours?: string
   holidays?: string
   siteUrl?: string
-  imageUrl?: string[]
+  imageUrl?: (string | undefined)[]
   genreIds?: string[]
   featureIds?: string[]
 }

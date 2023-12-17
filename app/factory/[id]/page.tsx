@@ -1,3 +1,4 @@
+import Container from '@/app/_components/layouts/container'
 import Map from '@/app/_components/ui-element/googleMap'
 import Spinner from '@/app/_components/ui-parts/spinner'
 import { getAllFactory, getFactoryById } from '@/app/_features/factory/api'
@@ -39,7 +40,7 @@ export default async function FactoryDetail({
   // console.log(factory)
 
   return (
-    <div>
+    <Container narrow>
       <div className="gap grid grid-cols-auto-min-300 gap-4">
         {imageUrl &&
           imageUrl.length > 0 &&
@@ -99,15 +100,15 @@ export default async function FactoryDetail({
           <FavoriteButton factoryId={id} />
         </div>
       </section>
-      <section className="grid gap-2 mt-4">
+      <section className="grid gap-2 mt-4 bg-color-main-200 p-4 rounded">
         <h2 className="font-semibold text-lg">{title}</h2>
         <p>{description}</p>
       </section>
-      <div className="grid gap-16 mt-16">
+      <div className="grid gap-20 mt-20">
         <section className="grid gap-2">
           <h2 className="font-semibold text-xl">口コミ</h2>
           <div className="">
-            {reviews && reviews.length > 0 && (
+            {reviews && reviews.length > 0 ? (
               <ul className="flex flex-col gap-1 mt-2">
                 {reviews.map((review) => (
                   <li
@@ -134,10 +135,12 @@ export default async function FactoryDetail({
                   </li>
                 ))}
               </ul>
+            ) : (
+              <p>投稿されている口コミはありません</p>
             )}
           </div>
         </section>
-        <section className="grid gap-2">
+        <section className="grid gap-2 ">
           <h2 className="font-semibold text-xl">施設の情報</h2>
           <div className="">
             <dl className="grid gap-2  border-b border-color-main-400 w-full py-5">
@@ -187,7 +190,7 @@ export default async function FactoryDetail({
           </div>
         </section>
       </div>
-    </div>
+    </Container>
   )
 }
 

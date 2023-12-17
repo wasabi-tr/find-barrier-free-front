@@ -4,14 +4,10 @@ import Link from 'next/link'
 import SideMenu from '../sideMenu'
 import {
   UserIcon,
-  HomeIcon,
   BuildingLibraryIcon,
   PlusIcon,
   ArrowRightOnRectangleIcon,
 } from '@heroicons/react/24/outline'
-import LoginButton from '../../ui-parts/authButton/loginButton'
-import LogoutButton from '../../ui-parts/authButton/logoutButton'
-import { getServerSession } from 'next-auth'
 import { useSession } from 'next-auth/react'
 const Header = () => {
   const session = useSession()
@@ -25,7 +21,7 @@ const Header = () => {
               className="px-4 py-1 rounded-md transition duration-300 
             hover:bg-color-main-200"
             >
-              のとさんず
+              FurAlle
             </Link>
           </div>
           <ul className="flex gap-4 items-center ml-auto sm:hidden">
@@ -56,7 +52,7 @@ const Header = () => {
                 <li>
                   <Link
                     href={'/dashboard/factory/register'}
-                    className="flex items-center gap-2 p-3 rounded-md transition bg-color-green-700 text-white  hover:bg-color-green-800 "
+                    className="flex items-center gap-2 p-3 rounded-md transition bg-color-blue-700 text-white  hover:bg-color-blue-800 "
                   >
                     <span>
                       <PlusIcon className="w-6 h-6 text-white" />

@@ -22,7 +22,7 @@ const AccessibilityCheckBoxes = async () => {
                 type="checkbox"
                 name="accessibilityFeatures[]"
                 value={feature.name}
-                className="w-4 h-4 border-gray-400 rounded  cursor-pointer accent-color-green-600"
+                className="w-4 h-4 border-gray-400 rounded  cursor-pointer accent-color-blue-600"
               />
               <label htmlFor={feature.id} className="">
                 {feature.name}

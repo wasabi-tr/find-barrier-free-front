@@ -63,7 +63,7 @@ const NickNameEditField = ({ user }: { user: User }) => {
               >
                 キャンセルする
               </button>
-              <Button green small>
+              <Button blue small>
                 {pending ? '保存中...' : '保存する'}
               </Button>
             </div>
