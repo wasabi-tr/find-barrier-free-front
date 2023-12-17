@@ -2,6 +2,11 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { z } from 'zod'
+import { createFactory } from '../api'
+import { putImage } from '@/app/_common/libs/r2/storage'
+import { getServerSession } from 'next-auth'
+import { options } from '@/app/next-auth'
+import { getServerActionSession } from '@/app/_components/functional/serverActionSession'
 
 const factoryFormSchema = z.object({
   name: z.string().min(1, { message: '入力してください' }),
@@ -13,9 +18,10 @@ const factoryFormSchema = z.object({
   addressDetail: z.string().min(1, { message: '入力してください' }),
   tel: z.string(),
   businessHours: z.string(),
-  // holidays: z.string(),
+  holidays: z.string(),
   siteUrl: z.string(),
-  imageUrl: z.string(),
+  imageUrl: z.array(z.string()),
+  userId: z.string(),
 })
 
 type State = {
@@ -32,40 +38,41 @@ type State = {
     holidays?: string[]
     siteUrl?: string[]
     imageUrl?: string[]
+    userId?: string[]
   }
   message: string | null
 }
+
 export const actions = async (
   prevState: State,
   formData: FormData
 ): Promise<State> => {
-  const name = formData.get('name')
-  const description = formData.get('description')
-  const title = formData.get('title')
-  const zipcode = formData.get('zipcode')
-  const prefecture = formData.get('prefecture')
-  const city = formData.get('city')
-  const addressDetail = formData.get('addressDetail')
-  const tel = formData.get('tel')
-  const businessHours = formData.get('businessHours')
-  const holidays = formData.get('holidays')
-  const siteUrl = formData.get('siteUrl')
-  const imageUrl = formData.get('imageUrl')
+  const imageFiles = formData.getAll('imageUrl') as File[]
+  //fileがundefinedのときに.undefinedがになってしまう。
 
-  const validatedFields = factoryFormSchema.safeParse({
-    name,
-    title,
-    description,
-    zipcode,
-    prefecture,
-    city,
-    addressDetail,
-    tel,
-    businessHours,
-    holidays,
-    siteUrl,
-    // imageUrl,
+  const factoryImageUrlsPromises = imageFiles?.map((imageFile) => {
+    return putImage(imageFile, 'factory')
   })
+
+  const factoryImageUrls = await Promise.all(factoryImageUrlsPromises)
+
+  const factoryData = {
+    name: formData.get('name'),
+    title: formData.get('title'),
+    description: formData.get('description'),
+    zipcode: formData.get('zipcode'),
+    prefecture: formData.get('prefecture'),
+    city: formData.get('city'),
+    addressDetail: formData.get('addressDetail'),
+    tel: formData.get('tel'),
+    businessHours: formData.get('businessHours'),
+    holidays: formData.getAll('holidays').join('、'),
+    siteUrl: formData.get('siteUrl'),
+    imageUrl: factoryImageUrls,
+    userId: formData.get('userId'),
+  }
+
+  const validatedFields = factoryFormSchema.safeParse(factoryData)
   if (!validatedFields.success) {
     return {
       errors: validatedFields.error.flatten().fieldErrors,
@@ -74,12 +81,12 @@ export const actions = async (
   }
 
   try {
-    // 施設を作成する処理
+    // const res = await createFactory(validatedFields.data)
+    revalidatePath('/dashboard/factory/')
+    redirect('/dashboard/factory')
   } catch (error) {
     return {
       message: '施設の登録に失敗しました。',
     }
   }
-  revalidatePath('/dashboard/factory/')
-  redirect('/dashboard/factory')
 }

@@ -23,6 +23,7 @@ export type Review = {
 }
 
 export type Factory = {
+  userId: string
   id: string
   createdAt: string
   updatedAt: string
@@ -84,6 +85,8 @@ export type Auth = {
 export type EditedFactory = {
   id: string
   name: string
+  title: string
+  description: string
   zipcode: string
   prefecture: string
   city: string
@@ -92,7 +95,7 @@ export type EditedFactory = {
   businessHours?: string
   holidays?: string
   siteUrl?: string
-  imageUrl: string[]
+  imageUrl?: string[]
   genreIds?: string[]
   featureIds?: string[]
 }

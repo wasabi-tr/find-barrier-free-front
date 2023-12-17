@@ -31,7 +31,7 @@ const Dashboard = ({ children }: { children: React.ReactNode }) => {
               >
                 <span>
                   <BuildingLibraryIcon
-                    className={`w-6 h-6 text-color-main-800 ${
+                    className={`w-6 h-6  ${
                       pathname === '/dashboard/factory'
                         ? 'text-color-green-800'
                         : 'text-color-main-800'
@@ -52,7 +52,7 @@ const Dashboard = ({ children }: { children: React.ReactNode }) => {
               >
                 <span>
                   <StarIcon
-                    className={`w-6 h-6 text-color-main-800  ${
+                    className={`w-6 h-6  ${
                       pathname === '/dashboard/favorite'
                         ? 'text-color-green-800'
                         : 'text-color-main-800'
@@ -73,7 +73,7 @@ const Dashboard = ({ children }: { children: React.ReactNode }) => {
               >
                 <span>
                   <ChatBubbleLeftEllipsisIcon
-                    className={`w-6 h-6 text-color-main-800 ${
+                    className={`w-6 h-6 ${
                       pathname === '/dashboard/review'
                         ? 'text-color-green-800'
                         : 'text-color-main-800'
@@ -109,7 +109,7 @@ const Dashboard = ({ children }: { children: React.ReactNode }) => {
             </li>
           </ul>
         </aside>
-        <div className="flex-1 py-5 ">{children}</div>
+        <div className="flex-1">{children}</div>
       </div>
     </Container>
   )

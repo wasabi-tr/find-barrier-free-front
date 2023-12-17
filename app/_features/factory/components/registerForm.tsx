@@ -1,17 +1,29 @@
 'use client'
 import { useFormState, useFormStatus } from 'react-dom'
 import { actions } from '../actions/factoryRegisterActions'
-import { Button } from '@/app/_components/ui-parts/button'
+import { usePreviewImage } from '@/app/_common/hooks/usePreviewImage'
+import Image from 'next/image'
+import { useSession } from 'next-auth/react'
 
 const initialState = {
   errors: {},
   message: null,
 }
+const week = [
+  { value: '月曜日', id: 'monday' },
+  { value: '火曜日', id: 'tuesday' },
+  { value: '水曜日', id: 'wednesday' },
+  { value: '木曜日', id: 'thursday' },
+  { value: '金曜日', id: 'friday' },
+  { value: '土曜日', id: 'saturday' },
+  { value: '日曜日', id: 'sunday' },
+]
 export const RegisterForm = () => {
-  const [state, register] = useFormState(actions, initialState)
+  const session = useSession()
+  const userId = session.data?.user.id
   const { pending } = useFormStatus()
-  console.log(state)
-  //エラー時の処理がうまく行っていない
+  const { imagePreviewUrl, handleImageChange } = usePreviewImage()
+  const [state, register] = useFormState(actions, initialState)
 
   return (
     <div>
@@ -243,7 +255,6 @@ export const RegisterForm = () => {
               <textarea
                 id="businessHours"
                 name="businessHours"
-                // type="text"
                 className={`p-4 rounded-lg bg-white w-full h-[300px] ${
                   state?.errors?.businessHours
                     ? 'border-2 border-red-600'
@@ -268,23 +279,16 @@ export const RegisterForm = () => {
             </label>
             <div className="relative w-full">
               <div className="">
-                {[
-                  '月曜日',
-                  '火曜日',
-                  '水曜日',
-                  '木曜日',
-                  '金曜日',
-                  '土曜日',
-                  '日曜日',
-                ].map((day) => (
-                  <div key={day} className="flex items-center gap-2">
+                {week.map((day) => (
+                  <div key={day.id} className="flex items-center gap-2">
                     <input
-                      id={`holiday-${day}`}
+                      id={`holiday-${day.id}`}
                       name="holidays"
                       type="checkbox"
                       className="p-4 rounded-lg bg-white"
+                      value={day.value}
                     />
-                    <label htmlFor={`holiday-${day}`}>{day}</label>
+                    <label htmlFor={`holiday-${day.id}`}>{day.value}</label>
                   </div>
                 ))}
               </div>
@@ -326,9 +330,54 @@ export const RegisterForm = () => {
               </p>
             )}
           </div>
+          <div className="relative flex flex-col items-start gap-2  ">
+            <label htmlFor="imageUrl" className="flex items-center gap-2 ">
+              施設の画像
+            </label>
+            <div className="relative w-[320px]">
+              <input
+                id="imageUrl"
+                name="imageUrl"
+                type="file"
+                onChange={handleImageChange}
+                className={`p-4 rounded-lg bg-white w-full ${
+                  state?.errors?.imageUrl
+                    ? 'border-2 border-red-600'
+                    : 'border border-color-main-600'
+                }`}
+                aria-describedby="imageUrl-error"
+              />
+            </div>
+            {imagePreviewUrl && (
+              <ul className="grid grid-cols-3 w-full ">
+                <li className="relative aspect-video">
+                  <Image
+                    src={imagePreviewUrl}
+                    alt=""
+                    fill
+                    className="object-cover"
+                  />
+                </li>
+              </ul>
+            )}
+            {state?.errors?.imageUrl && (
+              <p
+                id="imageUrl-error"
+                className="text-red-600 text-sm"
+                aria-live="polite"
+              >
+                {state.errors.imageUrl}
+              </p>
+            )}
+          </div>
+          <input type="hidden" name="userId" value={userId} />
 
           <div className="flex justify-center mt-5">
-            <Button green>施設を登録する</Button>
+            <button
+              className={`px-4 py-3 border border-color-main-400  rounded-lg transition w-[320px] h-16 hover:bg-color-main-200 `}
+            >
+              上記の内容で登録する
+            </button>
           </div>
         </div>
       </form>

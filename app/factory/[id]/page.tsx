@@ -61,6 +61,40 @@ export default async function FactoryDetail({
           〒{zipcode}&nbsp;
           {`${prefecture}${city}${addressDetail}`}
         </p>
+        {features && features.length > 0 && (
+          <dl className="flex items-center gap-2 mt-2">
+            <dt className="text-xs">施設の特徴：</dt>
+            <dd>
+              <ul className="flex gap-1 ">
+                {features.map((feature) => (
+                  <li
+                    key={feature.feature.id}
+                    className="py-1 px-4 bg-slate-200 rounded text-xs"
+                  >
+                    {feature.feature.name}
+                  </li>
+                ))}
+              </ul>
+            </dd>
+          </dl>
+        )}
+        {genres && genres.length > 0 && (
+          <dl className="flex items-center gap-2 mt-2">
+            <dt className="text-xs">目的：</dt>
+            <dd>
+              <ul className="flex gap-1">
+                {genres.map((genre) => (
+                  <li
+                    key={genre.genre.id}
+                    className="py-1 px-4 bg-slate-200 rounded text-xs"
+                  >
+                    #{genre.genre.name}
+                  </li>
+                ))}
+              </ul>
+            </dd>
+          </dl>
+        )}
         <div className="">
           <FavoriteButton factoryId={id} />
         </div>
@@ -70,40 +104,6 @@ export default async function FactoryDetail({
         <p>{description}</p>
       </section>
       <div className="grid gap-16 mt-16">
-        <section className="grid gap-2">
-          <h2 className="font-semibold text-xl">施設の特徴</h2>
-          <div className="">
-            {features && features.length > 0 && (
-              <ul className="flex gap-1 mt-2">
-                {features.map((feature) => (
-                  <li
-                    key={feature.feature.id}
-                    className="py-1 px-4 bg-slate-200 rounded-lg text-sm"
-                  >
-                    {feature.feature.name}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        </section>
-        <section className="grid gap-2">
-          <h2 className="font-semibold text-xl">目的</h2>
-          <div className="">
-            {genres && genres.length > 0 && (
-              <ul className="flex gap-1 mt-2">
-                {genres.map((genre) => (
-                  <li
-                    key={genre.genre.id}
-                    className="py-1 px-4 bg-slate-200 rounded-lg text-sm"
-                  >
-                    #{genre.genre.name}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        </section>
         <section className="grid gap-2">
           <h2 className="font-semibold text-xl">口コミ</h2>
           <div className="">
@@ -160,22 +160,30 @@ export default async function FactoryDetail({
                 </div>
               </dd>
             </dl>
-            <dl className="grid gap-2  border-b border-color-main-400 w-full py-5">
-              <dt className="font-semibold">電話番号</dt>
-              <dd>{tel}</dd>
-            </dl>
-            <dl className="grid gap-2  border-b border-color-main-400 w-full py-5">
-              <dt className="font-semibold">営業時間</dt>
-              <dd>{businessHours}</dd>
-            </dl>
-            <dl className="grid gap-2  border-b border-color-main-400 w-full py-5">
-              <dt className="font-semibold">定休日</dt>
-              <dd>{holidays}</dd>
-            </dl>
-            <dl className="grid gap-2  border-b border-color-main-400 w-full py-5">
-              <dt className="font-semibold">WEBサイト</dt>
-              <dd>{siteUrl}</dd>
-            </dl>
+            {tel && (
+              <dl className="grid gap-2  border-b border-color-main-400 w-full py-5">
+                <dt className="font-semibold">電話番号</dt>
+                <dd>{tel}</dd>
+              </dl>
+            )}
+            {businessHours && (
+              <dl className="grid gap-2  border-b border-color-main-400 w-full py-5">
+                <dt className="font-semibold">営業時間</dt>
+                <dd>{businessHours}</dd>
+              </dl>
+            )}
+            {holidays && (
+              <dl className="grid gap-2  border-b border-color-main-400 w-full py-5">
+                <dt className="font-semibold">定休日</dt>
+                <dd>{holidays}</dd>
+              </dl>
+            )}
+            {siteUrl && (
+              <dl className="grid gap-2  border-b border-color-main-400 w-full py-5">
+                <dt className="font-semibold">WEBサイト</dt>
+                <dd>{siteUrl}</dd>
+              </dl>
+            )}
           </div>
         </section>
       </div>

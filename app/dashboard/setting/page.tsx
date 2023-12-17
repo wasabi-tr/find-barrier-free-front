@@ -8,8 +8,6 @@ import { memo } from 'react'
 
 const DashboardSetting = async () => {
   const session = await getServerSession(options)
-  console.log(session)
-
   const authorization = authHeaderServerComponents()
   const res = await fetch(`${process.env.API_URL}/user/${session?.user.id}`, {
     headers: { ...authorization },
