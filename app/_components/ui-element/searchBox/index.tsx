@@ -19,7 +19,7 @@ const SearchBox: FC = async () => {
       <TextField />
       <AccessibilityCheckBoxes />
       <div className="">
-        <button className="flex items-center gap-3 justify-center w-full py-5 px-8 rounded-md bg-color-green-600 text-white transition duration-300 hover:bg-color-green-800 ">
+        <button className="flex items-center gap-3 justify-center w-full py-5 px-8 rounded-md bg-color-blue-600 text-white transition duration-300 hover:bg-color-blue-800 ">
           検索
           <span>
             <MagnifyingGlassIcon className="h-6 w-6 text-white" />

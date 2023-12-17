@@ -1,3 +1,4 @@
+import Container from '@/app/_components/layouts/container'
 import Map from '@/app/_components/ui-element/googleMap'
 import Spinner from '@/app/_components/ui-parts/spinner'
 import { getAllFactory, getFactoryById } from '@/app/_features/factory/api'
@@ -39,7 +40,7 @@ export default async function FactoryDetail({
   // console.log(factory)
 
   return (
-    <div>
+    <Container narrow>
       <div className="gap grid grid-cols-auto-min-300 gap-4">
         {imageUrl &&
           imageUrl.length > 0 &&
@@ -61,53 +62,53 @@ export default async function FactoryDetail({
           〒{zipcode}&nbsp;
           {`${prefecture}${city}${addressDetail}`}
         </p>
-        <div className="">
-          <FavoriteButton factoryId={id} />
-        </div>
-      </section>
-      <section className="grid gap-2 mt-4">
-        <h2 className="font-semibold text-lg">{title}</h2>
-        <p>{description}</p>
-      </section>
-      <div className="grid gap-16 mt-16">
-        <section className="grid gap-2">
-          <h2 className="font-semibold text-xl">施設の特徴</h2>
-          <div className="">
-            {features && features.length > 0 && (
-              <ul className="flex gap-1 mt-2">
+        {features && features.length > 0 && (
+          <dl className="flex items-center gap-2 mt-2">
+            <dt className="text-xs">施設の特徴：</dt>
+            <dd>
+              <ul className="flex gap-1 ">
                 {features.map((feature) => (
                   <li
                     key={feature.feature.id}
-                    className="py-1 px-4 bg-slate-200 rounded-lg text-sm"
+                    className="py-1 px-4 bg-slate-200 rounded text-xs"
                   >
                     {feature.feature.name}
                   </li>
                 ))}
               </ul>
-            )}
-          </div>
-        </section>
-        <section className="grid gap-2">
-          <h2 className="font-semibold text-xl">目的</h2>
-          <div className="">
-            {genres && genres.length > 0 && (
-              <ul className="flex gap-1 mt-2">
+            </dd>
+          </dl>
+        )}
+        {genres && genres.length > 0 && (
+          <dl className="flex items-center gap-2 mt-2">
+            <dt className="text-xs">目的：</dt>
+            <dd>
+              <ul className="flex gap-1">
                 {genres.map((genre) => (
                   <li
                     key={genre.genre.id}
-                    className="py-1 px-4 bg-slate-200 rounded-lg text-sm"
+                    className="py-1 px-4 bg-slate-200 rounded text-xs"
                   >
                     #{genre.genre.name}
                   </li>
                 ))}
               </ul>
-            )}
-          </div>
-        </section>
+            </dd>
+          </dl>
+        )}
+        <div className="">
+          <FavoriteButton factoryId={id} />
+        </div>
+      </section>
+      <section className="grid gap-2 mt-4 bg-color-main-200 p-4 rounded">
+        <h2 className="font-semibold text-lg">{title}</h2>
+        <p>{description}</p>
+      </section>
+      <div className="grid gap-20 mt-20">
         <section className="grid gap-2">
           <h2 className="font-semibold text-xl">口コミ</h2>
           <div className="">
-            {reviews && reviews.length > 0 && (
+            {reviews && reviews.length > 0 ? (
               <ul className="flex flex-col gap-1 mt-2">
                 {reviews.map((review) => (
                   <li
@@ -134,10 +135,12 @@ export default async function FactoryDetail({
                   </li>
                 ))}
               </ul>
+            ) : (
+              <p>投稿されている口コミはありません</p>
             )}
           </div>
         </section>
-        <section className="grid gap-2">
+        <section className="grid gap-2 ">
           <h2 className="font-semibold text-xl">施設の情報</h2>
           <div className="">
             <dl className="grid gap-2  border-b border-color-main-400 w-full py-5">
@@ -160,26 +163,34 @@ export default async function FactoryDetail({
                 </div>
               </dd>
             </dl>
-            <dl className="grid gap-2  border-b border-color-main-400 w-full py-5">
-              <dt className="font-semibold">電話番号</dt>
-              <dd>{tel}</dd>
-            </dl>
-            <dl className="grid gap-2  border-b border-color-main-400 w-full py-5">
-              <dt className="font-semibold">営業時間</dt>
-              <dd>{businessHours}</dd>
-            </dl>
-            <dl className="grid gap-2  border-b border-color-main-400 w-full py-5">
-              <dt className="font-semibold">定休日</dt>
-              <dd>{holidays}</dd>
-            </dl>
-            <dl className="grid gap-2  border-b border-color-main-400 w-full py-5">
-              <dt className="font-semibold">WEBサイト</dt>
-              <dd>{siteUrl}</dd>
-            </dl>
+            {tel && (
+              <dl className="grid gap-2  border-b border-color-main-400 w-full py-5">
+                <dt className="font-semibold">電話番号</dt>
+                <dd>{tel}</dd>
+              </dl>
+            )}
+            {businessHours && (
+              <dl className="grid gap-2  border-b border-color-main-400 w-full py-5">
+                <dt className="font-semibold">営業時間</dt>
+                <dd>{businessHours}</dd>
+              </dl>
+            )}
+            {holidays && (
+              <dl className="grid gap-2  border-b border-color-main-400 w-full py-5">
+                <dt className="font-semibold">定休日</dt>
+                <dd>{holidays}</dd>
+              </dl>
+            )}
+            {siteUrl && (
+              <dl className="grid gap-2  border-b border-color-main-400 w-full py-5">
+                <dt className="font-semibold">WEBサイト</dt>
+                <dd>{siteUrl}</dd>
+              </dl>
+            )}
           </div>
         </section>
       </div>
-    </div>
+    </Container>
   )
 }
 

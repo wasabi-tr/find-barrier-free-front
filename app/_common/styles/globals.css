@@ -29,12 +29,16 @@ body {
 }
 
 .container {
-  width: 1280px;
+  width: 1120px;
   max-width: 100%;
-  padding: 0 20px;
+  padding: 0 16px;
   margin: 0 auto;
 }
-@media (min-width: 768px) {
+.container.is-narrow {
+  width: 736px;
+  max-width: 100%;
+}
+@media (max-width: 767px) {
   .container {
     width: 100%;
   }

@@ -5,7 +5,6 @@ import {
   DeleteObjectCommand,
   DeleteObjectCommandInput,
 } from '@aws-sdk/client-s3'
-import path from 'path'
 
 const client = new S3Client({
   region: 'auto',
@@ -37,7 +36,6 @@ export const putImage = async (file: File, dir: 'factory' | 'avatar') => {
     console.error('アップロードエラー:', error)
     // エラー処理をここに追加
   }
-  // console.log(`${process.env.IMAGE_HOST_URL}/${dir}/${pathname}`)
 
   return `${process.env.IMAGE_HOST_URL}/${dir}/${pathname}`
 }

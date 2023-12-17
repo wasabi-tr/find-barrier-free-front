@@ -1,5 +1,6 @@
 import { EditedFactory, Factory, Feature, Genre } from '@/app/_common/types'
-import { getAllCookies } from '@/app/_components/functional/cookie'
+import { options } from '@/app/next-auth'
+import { getServerSession } from 'next-auth'
 import { cookies } from 'next/headers'
 
 export const getAllFactory = async (): Promise<Factory[]> => {
@@ -27,14 +28,32 @@ export const createFactory = async (
   factory: Omit<EditedFactory, 'id' | 'genreIds' | 'featureIds'>
 ) => {
   try {
-    // const cookie = getAllCookies()
     const cookieStore = cookies()
     const theme = cookieStore.get('next-auth.session-token')
     const bearer = theme?.value
-    console.log(bearer)
 
     const res = await fetch(`${process.env.API_URL}/factory`, {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${bearer}`,
+      },
+      body: JSON.stringify({ ...factory }),
+    })
+
+    return await res.json()
+  } catch (error: any) {
+    throw new Error(error)
+  }
+}
+
+export const updateFactory = async (factory: EditedFactory) => {
+  try {
+    const cookieStore = cookies()
+    const theme = cookieStore.get('next-auth.session-token')
+    const bearer = theme?.value
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/factory`, {
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${bearer}`,
@@ -48,32 +67,16 @@ export const createFactory = async (
   }
 }
 
-export const updateFactory = async (factory: EditedFactory) => {
-  try {
-    const cookie = getAllCookies()
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/factory`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-        cookie,
-      },
-      body: JSON.stringify(factory),
-    })
-
-    return await res.json()
-  } catch (error: any) {
-    throw new Error(error)
-  }
-}
-
 export const deleteFactory = async (id: string) => {
   try {
-    const cookie = getAllCookies()
+    const cookieStore = cookies()
+    const theme = cookieStore.get('next-auth.session-token')
+    const bearer = theme?.value
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/factory`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-        cookie,
+        Authorization: `Bearer ${bearer}`,
       },
       body: JSON.stringify({ id }),
     })
@@ -86,7 +89,7 @@ export const deleteFactory = async (id: string) => {
 
 export const getGenres = async (): Promise<Genre[]> => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/factory/genres`)
+    const res = await fetch(`${process.env.API_URL}/factory/genres`)
     const genres = await res.json()
     return genres
   } catch (error: any) {

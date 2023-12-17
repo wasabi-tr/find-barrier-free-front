@@ -28,7 +28,6 @@ export default async function RootLayout({
         <NextAuthProvider>
           <div className="text-color-main-800">
             <Header />
-            <Link href={'/factory'}>factory</Link>
             <main>{children}</main>
             <BottomNavigation />
             <Footer />

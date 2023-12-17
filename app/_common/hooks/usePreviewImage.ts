@@ -1,6 +1,4 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import React, { ChangeEvent, useState } from 'react'
-import { putImage } from '../libs/r2/storage'
+import { ChangeEvent, useState } from 'react'
 
 export const usePreviewImage = () => {
   const [imagePreviewUrl, setImagePreviewUrl] = useState('')
