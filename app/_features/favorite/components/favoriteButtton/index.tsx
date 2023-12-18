@@ -31,7 +31,7 @@ export const FavoriteButton = ({ factoryId }: { factoryId: string }) => {
 
   return (
     <button
-      className="absolute top-0 right-0 p-2 rounded-full transition border border-color-main-200 hover:bg-color-main-200"
+      className="p-2 rounded-full transition border border-color-main-200 hover:bg-color-main-200"
       onClick={handleClick}
       aria-label="お気に入りに登録する"
     >

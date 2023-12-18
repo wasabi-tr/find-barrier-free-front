@@ -18,8 +18,10 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
+  modal,
 }: {
   children: React.ReactNode
+  modal: React.ReactNode
 }) {
   return (
     <html lang="ja">
@@ -28,7 +30,10 @@ export default async function RootLayout({
         <NextAuthProvider>
           <div className="text-color-main-800">
             <Header />
-            <main>{children}</main>
+            <main>
+              {children}
+              {modal}
+            </main>
             <BottomNavigation />
             <Footer />
           </div>
