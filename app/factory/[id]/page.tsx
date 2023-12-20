@@ -152,11 +152,11 @@ export default async function FactoryDetail({
           <div>
             <dl className="flex gap-2  border-b border-color-main-400 w-full py-5">
               <dt className="shrink-0 basis-1/3 font-semibold">施設の名前</dt>
-              <dd>{name}</dd>
+              <dd className="flex-1">{name}</dd>
             </dl>
             <dl className="flex gap-2  border-b border-color-main-400 w-full py-5">
               <dt className="shrink-0 basis-1/3 font-semibold">住所</dt>
-              <dd>
+              <dd className="flex-1">
                 <div>
                   <span>
                     〒{zipcode}&nbsp;
@@ -173,25 +173,25 @@ export default async function FactoryDetail({
             {tel && (
               <dl className="flex gap-2  border-b border-color-main-400 w-full py-5">
                 <dt className="shrink-0 basis-1/3 font-semibold">電話番号</dt>
-                <dd>{tel}</dd>
+                <dd className="flex-1">{tel}</dd>
               </dl>
             )}
             {businessHours && (
               <dl className="flex gap-2  border-b border-color-main-400 w-full py-5">
                 <dt className="shrink-0 basis-1/3 font-semibold">営業時間</dt>
-                <dd>{businessHours}</dd>
+                <dd className="flex-1">{businessHours}</dd>
               </dl>
             )}
             {holidays && (
               <dl className="flex gap-2  border-b border-color-main-400 w-full py-5">
                 <dt className="shrink-0 basis-1/3 font-semibold">定休日</dt>
-                <dd>{holidays}</dd>
+                <dd className="flex-1">{holidays}</dd>
               </dl>
             )}
             {siteUrl && (
               <dl className="flex gap-2  border-b border-color-main-400 w-full py-5">
                 <dt className="shrink-0 basis-1/3 font-semibold">WEBサイト</dt>
-                <dd>{siteUrl}</dd>
+                <dd className="flex-1">{siteUrl}</dd>
               </dl>
             )}
           </div>

@@ -3,6 +3,7 @@ import { putImage } from '@/app/_common/libs/r2/storage'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { z } from 'zod'
+import { createReview } from '../api'
 
 const reviewFormSchema = z.object({
   title: z.string().min(1, { message: '入力してください' }),
@@ -49,14 +50,17 @@ export const registerReviewAction = async (
   console.log(validatedFields.data)
 
   try {
-    console.log()
+    const res = await createReview(validatedFields.data)
+    console.log(res)
+    // revalidatePath(`/factory/${validatedFields.data.factoryId}/`)
+    // redirect(`/factory/${validatedFields.data.factoryId}/`)
 
-    // const res = await createFactory(validatedFields.data)
-    // revalidatePath('/factory')
-    // redirect('/factory')
-  } catch (error) {
     return {
-      message: '施設の登録に失敗しました。',
+      message: 'ok',
+    }
+  } catch (error: any) {
+    return {
+      message: error.message,
     }
   }
 }
