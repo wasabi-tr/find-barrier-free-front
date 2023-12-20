@@ -2,10 +2,12 @@
 import { useCallback, useRef, useEffect, MouseEventHandler } from 'react'
 import { useRouter } from 'next/navigation'
 import Container from '../../layouts/container'
+import { XMarkIcon } from '@heroicons/react/24/outline'
 
 export default function Modal({ children }: { children: React.ReactNode }) {
   const overlay = useRef(null)
   const wrapper = useRef(null)
+  const closeBtn = useRef<HTMLButtonElement>(null)
   const router = useRouter()
 
   const onDismiss = useCallback(() => {
@@ -14,7 +16,11 @@ export default function Modal({ children }: { children: React.ReactNode }) {
 
   const onClick: MouseEventHandler = useCallback(
     (e) => {
-      if (e.target === overlay.current || e.target === wrapper.current) {
+      if (
+        e.target === overlay.current ||
+        e.target === wrapper.current ||
+        e.target === closeBtn.current
+      ) {
         if (onDismiss) onDismiss()
       }
     },
@@ -32,19 +38,31 @@ export default function Modal({ children }: { children: React.ReactNode }) {
     document.addEventListener('keydown', onKeyDown)
     return () => document.removeEventListener('keydown', onKeyDown)
   }, [onKeyDown])
+  useEffect(() => {
+    if (closeBtn.current) {
+      closeBtn.current.focus()
+    }
+  }, [])
 
   return (
     <div
       ref={overlay}
-      className="fixed z-10 left-0 right-0 top-0 bottom-0 mx-auto bg-black/60"
+      className="fixed z-10 left-0 right-0 top-0 bottom-0 mx-auto bg-black/60 h-full px-4"
       onClick={onClick}
     >
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full sm:w-10/12 md:w-8/12 lg:w-1/2">
-        <Container>
-          <div ref={wrapper} className=" p-6 bg-white rounded ">
-            {children}
-          </div>
-        </Container>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[736px] max-w-full max-h-[80%] overflow-y-scroll">
+        <div className="py-10 px-14 bg-white  rounded-md ">
+          <button
+            ref={closeBtn}
+            className="flex flex-col justify-center items-center w-14 h-14 border border-color-main-800 text-xs rounded-full ml-auto transition hover:bg-color-main-200"
+          >
+            <span>
+              <XMarkIcon className="w-4 h-4 text-color-main-800" />{' '}
+            </span>
+            閉じる
+          </button>
+          {children}
+        </div>
       </div>
     </div>
   )
