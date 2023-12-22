@@ -5,8 +5,7 @@ import { registerReviewAction } from '../actions/reviewRegisterAction'
 import Image from 'next/image'
 import { usePreviewImage } from '@/app/_common/hooks/usePreviewImage'
 import { useSession } from 'next-auth/react'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import { revalidatePath } from 'next/cache'
+import { useSearchParams } from 'next/navigation'
 import { Review } from '@/app/_common/types'
 
 const initialState = {
@@ -38,7 +37,9 @@ const ReviewForm = () => {
 
   return (
     <div className="grid gap-6">
-      <h2 className="text-center font-bold">口コミを登録する</h2>
+      <h2 className="text-center font-bold">
+        {review ? `口コミを更新する` : `口コミを登録する`}
+      </h2>
       <form action={register}>
         <div className="grid gap-10">
           <div className="relative flex flex-col items-start gap-2  ">

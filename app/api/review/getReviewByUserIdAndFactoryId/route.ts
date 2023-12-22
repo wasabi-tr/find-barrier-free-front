@@ -7,6 +7,7 @@ export async function GET(request: Request) {
   // console.log({ userId, factoryId })
   if (userId && factoryId) {
     const res = await getReviewsByUserIdAndFactoryId({ userId, factoryId })
+    console.log(res)
 
     return Response.json(res)
   }
