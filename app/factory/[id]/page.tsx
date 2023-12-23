@@ -4,9 +4,12 @@ import Spinner from '@/app/_components/ui-parts/spinner'
 import { getAllFactory, getFactoryById } from '@/app/_features/factory/api'
 import { FavoriteButton } from '@/app/_features/favorite/components/favoriteButtton'
 import { getReviewsByFactoryId } from '@/app/_features/review/api'
-import { UserIcon } from '@heroicons/react/24/outline'
-import { getServerSession } from 'next-auth'
+import {
+  ChatBubbleLeftEllipsisIcon,
+  UserIcon,
+} from '@heroicons/react/24/outline'
 import Image from 'next/image'
+import Link from 'next/link'
 import { Suspense } from 'react'
 
 export default async function FactoryDetail({
@@ -36,8 +39,6 @@ export default async function FactoryDetail({
     genres,
     features,
   } = factory
-
-  // console.log(factory)
 
   return (
     <Container narrow>
@@ -96,7 +97,13 @@ export default async function FactoryDetail({
             </dd>
           </dl>
         )}
-        <div className="">
+        <div className="absolute top-0 right-0 flex gap-2">
+          <Link
+            href={`/review/register?id=${id}`}
+            className=" p-2 rounded-full transition border border-color-main-200 hover:bg-color-main-200"
+          >
+            <ChatBubbleLeftEllipsisIcon className="w-6 h-6 text-color-main-600" />
+          </Link>
           <FavoriteButton factoryId={id} />
         </div>
       </section>
@@ -107,7 +114,7 @@ export default async function FactoryDetail({
       <div className="grid gap-20 mt-20">
         <section className="grid gap-2">
           <h2 className="font-semibold text-xl">口コミ</h2>
-          <div className="">
+          <div>
             {reviews && reviews.length > 0 ? (
               <ul className="flex flex-col gap-1 mt-2">
                 {reviews.map((review) => (
@@ -128,7 +135,7 @@ export default async function FactoryDetail({
                         <UserIcon className="w-6 h-6 text-color-main-400" />
                       )}
                     </div>
-                    <div className="">
+                    <div>
                       <p className="font-semibold">{review.title}</p>
                       <p className="text-sm">{review.comment}</p>
                     </div>
@@ -142,15 +149,15 @@ export default async function FactoryDetail({
         </section>
         <section className="grid gap-2 ">
           <h2 className="font-semibold text-xl">施設の情報</h2>
-          <div className="">
-            <dl className="grid gap-2  border-b border-color-main-400 w-full py-5">
-              <dt className="font-semibold">施設の名前</dt>
-              <dd>{name}</dd>
+          <div>
+            <dl className="flex gap-2  border-b border-color-main-400 w-full py-5">
+              <dt className="shrink-0 basis-1/3 font-semibold">施設の名前</dt>
+              <dd className="flex-1">{name}</dd>
             </dl>
-            <dl className="grid gap-2  border-b border-color-main-400 w-full py-5">
-              <dt className="font-semibold">住所</dt>
-              <dd>
-                <div className="">
+            <dl className="flex gap-2  border-b border-color-main-400 w-full py-5">
+              <dt className="shrink-0 basis-1/3 font-semibold">住所</dt>
+              <dd className="flex-1">
+                <div>
                   <span>
                     〒{zipcode}&nbsp;
                     {`${prefecture}${city}${addressDetail}`}
@@ -164,27 +171,27 @@ export default async function FactoryDetail({
               </dd>
             </dl>
             {tel && (
-              <dl className="grid gap-2  border-b border-color-main-400 w-full py-5">
-                <dt className="font-semibold">電話番号</dt>
-                <dd>{tel}</dd>
+              <dl className="flex gap-2  border-b border-color-main-400 w-full py-5">
+                <dt className="shrink-0 basis-1/3 font-semibold">電話番号</dt>
+                <dd className="flex-1">{tel}</dd>
               </dl>
             )}
             {businessHours && (
-              <dl className="grid gap-2  border-b border-color-main-400 w-full py-5">
-                <dt className="font-semibold">営業時間</dt>
-                <dd>{businessHours}</dd>
+              <dl className="flex gap-2  border-b border-color-main-400 w-full py-5">
+                <dt className="shrink-0 basis-1/3 font-semibold">営業時間</dt>
+                <dd className="flex-1">{businessHours}</dd>
               </dl>
             )}
             {holidays && (
-              <dl className="grid gap-2  border-b border-color-main-400 w-full py-5">
-                <dt className="font-semibold">定休日</dt>
-                <dd>{holidays}</dd>
+              <dl className="flex gap-2  border-b border-color-main-400 w-full py-5">
+                <dt className="shrink-0 basis-1/3 font-semibold">定休日</dt>
+                <dd className="flex-1">{holidays}</dd>
               </dl>
             )}
             {siteUrl && (
-              <dl className="grid gap-2  border-b border-color-main-400 w-full py-5">
-                <dt className="font-semibold">WEBサイト</dt>
-                <dd>{siteUrl}</dd>
+              <dl className="flex gap-2  border-b border-color-main-400 w-full py-5">
+                <dt className="shrink-0 basis-1/3 font-semibold">WEBサイト</dt>
+                <dd className="flex-1">{siteUrl}</dd>
               </dl>
             )}
           </div>

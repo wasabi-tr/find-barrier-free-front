@@ -99,3 +99,11 @@ export type EditedFactory = {
   genreIds?: string[]
   featureIds?: string[]
 }
+
+export type EditedReview = {
+  title: string
+  comment: string
+  userId: string
+  factoryId: string
+  imageUrl?: (string | undefined)[]
+}

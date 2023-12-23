@@ -1,6 +1,7 @@
 import { Review } from '@/app/_common/types'
 import React from 'react'
 import { format, parseISO } from 'date-fns'
+import Link from 'next/link'
 
 export const ReviewItem = ({ review }: { review: Review }) => {
   const { id, title, comment, createdAt, factory } = review
@@ -17,18 +18,18 @@ export const ReviewItem = ({ review }: { review: Review }) => {
         <p className="text-sm">{comment}</p>
       </div>
       <div className="flex gap-3 justify-end w-full mt-4">
-        <button
-          type="button"
-          className="px-4 py-3 border border-color-main-400 rounded-lg transition hover:bg-color-main-800 hover:text-white "
+        <Link
+          href={`/review/register?id=${factory.id}`}
+          className="px-4 py-3 border border-color-main-400 rounded-lg transition hover:bg-color-main-800 hover:text-white"
         >
           編集する
-        </button>
-        <button
-          type="button"
+        </Link>
+        <Link
+          href={`/review/delete?id=${id}`}
           className="px-4 py-3 border border-red-500 text-red-500 rounded-lg transition hover:bg-red-500 hover:text-white  "
         >
           削除する
-        </button>
+        </Link>
       </div>
     </li>
   )

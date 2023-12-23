@@ -6,6 +6,10 @@ import { NextAuthOptions } from 'next-auth'
 
 export const options: NextAuthOptions = {
   // debug: true,
+  pages: {
+    signIn: '/auth/login', // カスタムのサインインページへのパス
+    // 他のページ設定...
+  },
   session: {
     strategy: 'jwt',
   },

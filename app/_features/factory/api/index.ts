@@ -1,6 +1,4 @@
 import { EditedFactory, Factory, Feature, Genre } from '@/app/_common/types'
-import { options } from '@/app/next-auth'
-import { getServerSession } from 'next-auth'
 import { cookies } from 'next/headers'
 
 export const getAllFactory = async (): Promise<Factory[]> => {
@@ -8,6 +6,19 @@ export const getAllFactory = async (): Promise<Factory[]> => {
     const res = await fetch(`${process.env.API_URL}/factory`)
     const factories = await res.json()
 
+    return factories
+  } catch (error: any) {
+    throw new Error(error)
+  }
+}
+export const getAllFactoryByUser = async (
+  userId: string
+): Promise<Factory[]> => {
+  try {
+    const res = await fetch(
+      `${process.env.API_URL}/factory/user/?userId=${userId}`
+    )
+    const factories = await res.json()
     return factories
   } catch (error: any) {
     throw new Error(error)

@@ -3,10 +3,8 @@ import { Factory } from '@/app/_common/types'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { FC } from 'react'
-import { getFactoryGenres } from '../api'
-import { getReviewsByFactoryId } from '../../review/api'
 import { UserIcon } from '@heroicons/react/24/solid'
-import { FavoriteButton } from '../../favorite/components/favoriteButtton'
+import { getReviewsByFactoryId } from '../../review/api'
 
 type Props = {
   factory: Factory
@@ -39,7 +37,7 @@ const FactoryItem: FC<Props> = async ({ factory }) => {
             className="w-full h-auto object-contain"
           />
         </figure>
-        <div className="flex-1">
+        <div className="flex-1 w-full">
           <p className="font-semibold">{name}</p>
           <p>
             〒{zipcode}&nbsp;

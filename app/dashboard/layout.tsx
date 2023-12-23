@@ -13,7 +13,6 @@ import LogoutButton from '../_components/ui-parts/authButton/logoutButton'
 
 const Dashboard = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname()
-  console.log(pathname)
 
   return (
     <Container>
@@ -80,7 +79,7 @@ const Dashboard = ({ children }: { children: React.ReactNode }) => {
                     }`}
                   />
                 </span>
-                <p>投稿したレビュー</p>
+                <p>投稿した口コミ</p>
               </Link>
             </li>
             <li>
