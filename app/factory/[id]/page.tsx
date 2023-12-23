@@ -99,7 +99,7 @@ export default async function FactoryDetail({
         )}
         <div className="absolute top-0 right-0 flex gap-2">
           <Link
-            href={`/review?id=${id}`}
+            href={`/review/register?id=${id}`}
             className=" p-2 rounded-full transition border border-color-main-200 hover:bg-color-main-200"
           >
             <ChatBubbleLeftEllipsisIcon className="w-6 h-6 text-color-main-600" />

@@ -13,7 +13,6 @@ import LogoutButton from '../_components/ui-parts/authButton/logoutButton'
 
 const Dashboard = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname()
-  console.log(pathname)
 
   return (
     <Container>

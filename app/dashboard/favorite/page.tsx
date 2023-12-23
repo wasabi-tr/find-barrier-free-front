@@ -9,7 +9,7 @@ const DashboardFavorite = async () => {
   const userId = session?.user.id
   const favoriteFactories = await getAllFavoriteByUserId(userId)
 
-  return (
+  return favoriteFactories && favoriteFactories.length > 0 ? (
     <ul className="grid gap-4">
       {favoriteFactories?.map((favoriteFactory: Favorite) => (
         <FactoryItem
@@ -18,6 +18,10 @@ const DashboardFavorite = async () => {
         />
       ))}
     </ul>
+  ) : (
+    <p className="text-center mt-12">
+      お気に入りに登録されている施設はありません。
+    </p>
   )
 }
 

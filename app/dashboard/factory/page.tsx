@@ -1,12 +1,27 @@
-import FactoryList from '@/app/_features/factory/components/factoryList'
+import { getAllFactoryByUser } from '@/app/_features/factory/api'
+import FactoryItem from '@/app/_features/factory/components/factoryItem'
+import { options } from '@/app/next-auth'
 import { PlusIcon } from '@heroicons/react/24/outline'
+import { getServerSession } from 'next-auth'
 import Link from 'next/link'
 import React from 'react'
 
 const DashboardFactory = async () => {
+  const session = await getServerSession(options)
+  const userId = session?.user.id
+  const factories = await getAllFactoryByUser(userId)
+
   return (
     <>
-      <FactoryList />
+      {factories && factories.length > 0 ? (
+        <ul className="grid gap-4">
+          {factories?.map((factory) => (
+            <FactoryItem key={factory.id} factory={factory} />
+          ))}
+        </ul>
+      ) : (
+        <p className="text-center mt-12">投稿した施設はありません。</p>
+      )}
       <div className="flex justify-center mt-10">
         <Link
           href={'/dashboard/factory/register'}

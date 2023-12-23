@@ -8,11 +8,14 @@ const DashboardReview = async () => {
   const session = await getServerSession(options)
   const reviews = await getReviewsByUserId(session?.user.id)
 
-  return (
+  return reviews && reviews.length > 0 ? (
     <ul className="grid gap-4">
-      {reviews &&
-        reviews.map((review) => <ReviewItem key={review.id} review={review} />)}
+      {reviews.map((review) => (
+        <ReviewItem key={review.id} review={review} />
+      ))}
     </ul>
+  ) : (
+    <p className="text-center mt-12">投稿した口コミはありません。</p>
   )
 }
 
