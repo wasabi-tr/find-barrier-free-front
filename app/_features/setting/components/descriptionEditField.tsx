@@ -57,7 +57,7 @@ const DescriptionEditField = ({ user }: { user: User }) => {
               >
                 キャンセルする
               </button>
-              <Button blue small>
+              <Button green small>
                 {pending ? '保存中...' : '保存する'}
               </Button>
             </div>

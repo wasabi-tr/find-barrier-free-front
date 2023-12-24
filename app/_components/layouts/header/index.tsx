@@ -52,7 +52,7 @@ const Header = () => {
                 <li>
                   <Link
                     href={'/dashboard/factory/register'}
-                    className="flex items-center gap-2 p-3 rounded-md transition bg-color-blue-700 text-white  hover:bg-color-blue-800 "
+                    className="flex items-center gap-2 p-3 rounded-md transition bg-color-green-700 text-white  hover:bg-color-green-800 "
                   >
                     <span>
                       <PlusIcon className="w-6 h-6 text-white" />
@@ -64,7 +64,7 @@ const Header = () => {
             ) : (
               <li>
                 <Link
-                  href={'/auth/login'}
+                  href={'/auth/sign-in'}
                   className="flex items-center gap-2 p-3 rounded-md transition  hover:bg-color-main-200 "
                 >
                   <span>

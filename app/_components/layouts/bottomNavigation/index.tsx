@@ -5,9 +5,9 @@ import {
   UserIcon,
   HomeIcon,
   BuildingLibraryIcon,
+  ArrowRightOnRectangleIcon,
 } from '@heroicons/react/24/outline'
 import { signIn, useSession } from 'next-auth/react'
-import LoginButton from '../../ui-parts/authButton/loginButton'
 import { getServerSession } from 'next-auth'
 const BottomNavigation = () => {
   const session = useSession()
@@ -49,9 +49,15 @@ const BottomNavigation = () => {
               マイページ
             </Link>
           ) : (
-            <>
-              <LoginButton />
-            </>
+            <Link
+              href={'/auth/sign-in'}
+              className="flex flex-col justify-center items-center gap-1 p-3 rounded-md transition  hover:bg-color-main-200 text-xs h-full"
+            >
+              <span>
+                <ArrowRightOnRectangleIcon className="w-6 h-6 text-color-main-800" />
+              </span>
+              ログイン
+            </Link>
           )}
         </li>
       </ul>

@@ -73,7 +73,7 @@ const AvatarEditField = ({ user }: { user: User }) => {
             プロフィール画像を変更する
           </label>
           {isEdit && (
-            <Button blue small>
+            <Button green small>
               保存する
             </Button>
           )}

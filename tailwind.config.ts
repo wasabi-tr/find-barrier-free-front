@@ -13,6 +13,7 @@ const config: Config = {
     },
     extend: {
       colors: {
+        'color-main-50': '#F8F6F2',
         'color-main-100': '#F8F9F9',
         'color-main-200': '#F2F2F2',
         'color-main-300': '#CDCDCD',
