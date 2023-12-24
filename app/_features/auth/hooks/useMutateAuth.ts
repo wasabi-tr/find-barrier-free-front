@@ -45,7 +45,7 @@ export const useMutateAuth = () => {
 
       await signInByNextAuth('credentials', {
         idToken,
-        callbackUrl: '/auth/sign-up/setting',
+        callbackUrl: '/dashboard/setting',
       })
     } catch (e: any) {
       if (e.message === 'Firebase: Error (auth/email-already-in-use).') {
