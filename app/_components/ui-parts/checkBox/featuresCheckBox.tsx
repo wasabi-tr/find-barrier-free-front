@@ -2,7 +2,7 @@ import React from 'react'
 import { BuildingLibraryIcon } from '@heroicons/react/24/outline'
 import { getFeatures } from '@/app/_features/factory/api'
 
-const AccessibilityCheckBoxes = async () => {
+const FeaturesCheckBox = async () => {
   const features = await getFeatures()
 
   return (
@@ -20,7 +20,7 @@ const AccessibilityCheckBoxes = async () => {
               <input
                 id={feature.id}
                 type="checkbox"
-                name="accessibilityFeatures[]"
+                name="features"
                 value={feature.name}
                 className="w-4 h-4 border-gray-400 rounded  cursor-pointer accent-color-green-600"
               />
@@ -35,4 +35,4 @@ const AccessibilityCheckBoxes = async () => {
   )
 }
 
-export default AccessibilityCheckBoxes
+export default FeaturesCheckBox

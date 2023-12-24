@@ -1,6 +1,6 @@
 import Container from '../_components/layouts/container'
-import SearchBox from '../_components/ui-element/searchBox'
 import FactoryList from '../_features/factory/components/factoryList'
+import SearchBox from '../_features/search/components/searchBox'
 
 const Factory = async () => {
   return (
