@@ -3,11 +3,12 @@ import CredentialsProvider from 'next-auth/providers/credentials'
 import { randomBytes, randomUUID } from 'crypto'
 import { auth } from '../_common/libs/firebase/admin'
 import { NextAuthOptions } from 'next-auth'
+import { createUserByGoogle } from '../_features/user/api'
 
 export const options: NextAuthOptions = {
   // debug: true,
   pages: {
-    signIn: '/auth/login', // カスタムのサインインページへのパス
+    signIn: '/auth/sign-in', // カスタムのサインインページへのパス
     // 他のページ設定...
   },
   session: {
@@ -64,6 +65,14 @@ export const options: NextAuthOptions = {
           role: token.role,
         },
       }
+    },
+    async signIn({ user, account, profile, email, credentials }) {
+      console.log({ user, account, profile, email, credentials })
+      if (account?.provider === 'google') {
+        await createUserByGoogle({ id: user.id, name: user.name! })
+      }
+
+      return true
     },
   },
 }

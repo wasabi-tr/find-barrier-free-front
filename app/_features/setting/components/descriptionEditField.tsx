@@ -35,7 +35,7 @@ const DescriptionEditField = ({ user }: { user: User }) => {
         router.refresh()
       }}
     >
-      <div className="flex flex-col items-start gap-5 relative p-8  border border-color-main-400 rounded-md  ">
+      <div className="flex flex-col items-start gap-5 relative p-8  border border-color-green-600 rounded-md  ">
         <label htmlFor="description" className="text-lg">
           自己紹介
         </label>
@@ -57,7 +57,7 @@ const DescriptionEditField = ({ user }: { user: User }) => {
               >
                 キャンセルする
               </button>
-              <Button blue small>
+              <Button green small>
                 {pending ? '保存中...' : '保存する'}
               </Button>
             </div>

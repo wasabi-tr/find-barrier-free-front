@@ -33,8 +33,8 @@ const NickNameEditField = ({ user }: { user: User }) => {
         router.refresh()
       }}
     >
-      <div className="flex flex-col items-start gap-5 relative p-8 border border-color-main-400 rounded-md  ">
-        <label htmlFor="nickName" className="text-lg">
+      <div className="flex flex-col items-start gap-5 relative p-8 border border-color-green-600 rounded-md  ">
+        <label htmlFor="nickName" className="text-lg flex item-center gap-2">
           ユーザーネーム
         </label>
         <input type="hidden" name="id" value={user?.id} />
@@ -63,7 +63,7 @@ const NickNameEditField = ({ user }: { user: User }) => {
               >
                 キャンセルする
               </button>
-              <Button blue small>
+              <Button green small>
                 {pending ? '保存中...' : '保存する'}
               </Button>
             </div>
