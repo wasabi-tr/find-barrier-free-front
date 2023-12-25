@@ -1,13 +1,13 @@
+'use server'
 import { Factory } from '@/app/_common/types'
+import { getAllFactory } from '../../factory/api/getAllFactory'
 
 type State = { resultFactories: Factory[] }
 export const searchAction = async (
   prevState: State,
   formData: FormData
 ): Promise<State> => {
-  const res = await fetch('/api/factory/')
-  const factories: Factory[] = await res.json()
-
+  const factories = await getAllFactory()
   const area = formData.get('area') as string
   const purpose = formData.get('purpose') as string
   const free = formData.get('free') as string

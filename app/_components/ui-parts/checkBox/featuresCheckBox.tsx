@@ -1,6 +1,6 @@
 import React from 'react'
 import { BuildingLibraryIcon } from '@heroicons/react/24/outline'
-import { getFeatures } from '@/app/_features/factory/api'
+import { getFeatures } from '@/app/_features/factory/api/getFeatures'
 
 const FeaturesCheckBox = async () => {
   const features = await getFeatures()

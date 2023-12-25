@@ -1,4 +1,4 @@
-import { getAllFactoryByUser } from '@/app/_features/factory/api'
+import { getAllFactoryByUser } from '@/app/_features/factory/api/getAllFactoryByUser'
 import FactoryItem from '@/app/_features/factory/components/factoryItem'
 import { options } from '@/app/next-auth'
 import { PlusIcon } from '@heroicons/react/24/outline'

@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
-import { getAllFactory } from '../api'
 import FactoryItem from './factoryItem'
+import { getAllFactory } from '../api/getAllFactory'
 
 const FactoryList = async () => {
   const factories = await getAllFactory()

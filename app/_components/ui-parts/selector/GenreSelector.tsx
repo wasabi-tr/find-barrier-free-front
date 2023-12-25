@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { FlagIcon } from '@heroicons/react/24/outline'
-import { getGenres } from '@/app/_features/factory/api'
+import { getGenres } from '@/app/_features/factory/api/getGenres'
 
 export const PurposeSelector: FC = async () => {
   const purposes = await getGenres()

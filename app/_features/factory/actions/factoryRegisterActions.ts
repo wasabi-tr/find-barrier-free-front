@@ -2,8 +2,8 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { z } from 'zod'
-import { createFactory } from '../api'
 import { putImage } from '@/app/_common/libs/r2/storage'
+import { createFactory } from '../api/createFactory'
 
 const factoryFormSchema = z.object({
   name: z.string().min(1, { message: '入力してください' }),
