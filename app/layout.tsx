@@ -26,19 +26,19 @@ export default async function RootLayout({
   return (
     <html lang="ja">
       <body className={`${notoSansJP.className}`}>
-        {/* <TanstackProvider> */}
-        <NextAuthProvider>
-          <div className="text-color-main-800">
-            <Header />
-            <main>
-              {children}
-              {modal}
-            </main>
-            <BottomNavigation />
-            <Footer />
-          </div>
-        </NextAuthProvider>
-        {/* </TanstackProvider> */}
+        <TanstackProvider>
+          <NextAuthProvider>
+            <div className="text-color-main-800">
+              <Header />
+              <main>
+                {children}
+                {modal}
+              </main>
+              <BottomNavigation />
+              <Footer />
+            </div>
+          </NextAuthProvider>
+        </TanstackProvider>
       </body>
     </html>
   )

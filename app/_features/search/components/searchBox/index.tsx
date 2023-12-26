@@ -9,8 +9,7 @@ const SearchBox = ({ children }: { children: React.ReactNode }) => {
   }
   const { pending } = useFormStatus()
   const [state, search] = useFormState(searchAction, initialState)
-  console.log(state)
-
+  //server actionsをで実装していることが足を引っ張っている。
   return (
     <>
       <form

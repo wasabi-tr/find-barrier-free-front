@@ -1,4 +1,4 @@
-import { getReviewsByUserId } from '@/app/_features/review/api'
+import { getReviewsByUserId } from '@/app/_features/review/api/getReviewsByUserId'
 import { ReviewItem } from '@/app/_features/review/component/reviewItem'
 import { options } from '@/app/next-auth'
 import { getServerSession } from 'next-auth'

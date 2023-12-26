@@ -3,7 +3,7 @@ import { putImage } from '@/app/_common/libs/r2/storage'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { z } from 'zod'
-import { createReview } from '../api'
+import { createReview } from '../api/createReview'
 
 const reviewFormSchema = z.object({
   title: z.string().min(1, { message: '入力してください' }),

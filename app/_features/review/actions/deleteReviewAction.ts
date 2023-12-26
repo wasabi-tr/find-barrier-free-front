@@ -1,4 +1,4 @@
-import { deleteReview } from '../api'
+import { deleteReview } from '../api/deleteReview'
 
 export const deleteReviewAction = async (formData: FormData) => {
   'use server'

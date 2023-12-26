@@ -1,8 +1,21 @@
 import React from 'react'
 import { BuildingLibraryIcon } from '@heroicons/react/24/outline'
+import { Feature } from '@/app/_common/types'
+import { useQuery } from '@tanstack/react-query'
+import Spinner from '../spinner'
 import { getFeatures } from '@/app/_features/factory/api/getFeatures'
 
 const FeaturesCheckBox = async () => {
+  // const getFeatures = async () => {
+  //   const res = await fetch('api/features')
+  //   return await res.json()
+  // }
+  // const { data: features, isLoading } = useQuery<Feature[]>({
+  //   queryKey: ['features'],
+  //   queryFn: getFeatures,
+  //   staleTime: Infinity,
+  // })
+  // if (isLoading) return <Spinner />
   const features = await getFeatures()
 
   return (
