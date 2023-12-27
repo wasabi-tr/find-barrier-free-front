@@ -35,7 +35,7 @@ const DescriptionEditField = ({ user }: { user: User }) => {
         router.refresh()
       }}
     >
-      <div className="flex flex-col items-start gap-5 relative p-8  border border-color-green-600 rounded-md  ">
+      <div className="flex flex-col items-start gap-5 relative p-8  border-2  rounded-2xl ">
         <label htmlFor="description" className="text-lg">
           自己紹介
         </label>

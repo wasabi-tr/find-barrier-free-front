@@ -17,6 +17,7 @@ const FeaturesCheckBox = async () => {
   // })
   // if (isLoading) return <Spinner />
   const features = await getFeatures()
+  //選択されたらクエリパラメータに含む？
 
   return (
     <div className="flex flex-col gap-2">

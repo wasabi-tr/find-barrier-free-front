@@ -31,7 +31,7 @@ const AvatarEditField = ({ user }: { user: User }) => {
         router.refresh()
       }}
     >
-      <div className="relative flex flex-col items-start gap-5 p-8 border border-color-green-600 rounded-md  ">
+      <div className="relative flex flex-col items-start gap-5 p-8 border-2  rounded-2xl  ">
         <label htmlFor="avatar" className="text-lg">
           プロフィール画像
         </label>
