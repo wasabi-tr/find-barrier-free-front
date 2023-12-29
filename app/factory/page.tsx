@@ -14,11 +14,6 @@ type Props = {
   features: string[] | null
 }
 const Factory = async ({ searchParams }: { searchParams: Props }) => {
-  const { area, purpose, free, features } = searchParams
-  if (area || purpose || free || features) {
-    console.log('あるい')
-  }
-
   return (
     <div className="bg-color-main-50">
       <Container>
@@ -41,7 +36,7 @@ const Factory = async ({ searchParams }: { searchParams: Props }) => {
             </SearchBox>
           </aside>
           <div className="flex-1">
-            <FactoryList />
+            <FactoryList searchParams={searchParams} />
           </div>
         </div>
       </Container>

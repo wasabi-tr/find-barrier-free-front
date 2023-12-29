@@ -35,7 +35,7 @@ const FeaturesCheckBox = async () => {
                 id={feature.id}
                 type="checkbox"
                 name="features"
-                value={feature.name}
+                value={feature.slug}
                 className="w-4 h-4 border-gray-400 rounded  cursor-pointer accent-color-green-600"
               />
               <label htmlFor={feature.id} className="">

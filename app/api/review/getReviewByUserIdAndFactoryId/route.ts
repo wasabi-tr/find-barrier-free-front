@@ -12,6 +12,7 @@ export async function GET(request: Request) {
   }
   try {
     const res = await getReviewsByUserIdAndFactoryId({ userId, factoryId })
+
     return Response.json(res)
   } catch (error: any) {
     throw new Error(error)

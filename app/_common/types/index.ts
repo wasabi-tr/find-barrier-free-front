@@ -31,7 +31,7 @@ export type Factory = {
   description: string
   name: string
   zipcode: string
-  prefecture: string
+  prefecture: Prefecture
   city: string
   addressDetail: string
   lat: number
@@ -46,13 +46,20 @@ export type Factory = {
   genres: GenreToFactory[]
   features: FactoryFeature[]
 }
+export type Prefecture = {
+  id: string
+  slug: string
+  name: string
+}
 export type Genre = {
   id: string
+  slug: string
   name: string
 }
 
 export type Feature = {
   id: string
+  slug: string
   name: string
 }
 

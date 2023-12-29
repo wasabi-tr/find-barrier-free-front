@@ -41,7 +41,7 @@ const FactoryItem: FC<Props> = async ({ factory }) => {
           <p className="font-semibold">{name}</p>
           <p>
             〒{zipcode}&nbsp;
-            {`${prefecture}${city}${addressDetail}`}
+            {`${prefecture.name}${city}${addressDetail}`}
           </p>
           {genres && genres.length > 0 && (
             <ul className="flex gap-1 mt-2">

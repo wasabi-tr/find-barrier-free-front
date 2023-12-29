@@ -28,7 +28,7 @@ export const PurposeSelector: FC = async () => {
       </label>
       <select name="purpose" id="purpose" className="selector">
         {genres?.map((genre) => (
-          <option key={genre.id} value={genre.name}>
+          <option key={genre.id} value={genre.slug}>
             {genre.name}
           </option>
         ))}

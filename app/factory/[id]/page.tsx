@@ -64,7 +64,7 @@ export default async function FactoryDetail({
             <h1 className="font-semibold text-2xl">{name}</h1>
             <p className="mt-2">
               〒{zipcode}&nbsp;
-              {`${prefecture}${city}${addressDetail}`}
+              {`${prefecture.name}${city}${addressDetail}`}
             </p>
             {features && features.length > 0 && (
               <dl className="flex items-center gap-2 mt-2">

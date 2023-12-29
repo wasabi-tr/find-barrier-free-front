@@ -15,7 +15,7 @@ export const searchAction = async (
 
   const filterFactories = () => {
     return factories.filter((factory) => {
-      const matchesArea = factory.prefecture.includes(area)
+      const matchesArea = factory.prefecture.slug.includes(area)
       const matchesPurpose = factory.genres.some(
         (genre) => genre.genre.name === purpose
       )
