@@ -2,8 +2,8 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { z } from 'zod'
-import { createFactory } from '../api'
 import { putImage } from '@/app/_common/libs/r2/storage'
+import { createFactory } from '../api/createFactory'
 
 const factoryFormSchema = z.object({
   name: z.string().min(1, { message: '入力してください' }),
@@ -18,6 +18,8 @@ const factoryFormSchema = z.object({
   holidays: z.string(),
   siteUrl: z.string(),
   imageUrl: z.array(z.string().optional()),
+  genreIds: z.array(z.string().optional()),
+  featureIds: z.array(z.string().optional()),
   userId: z.string(),
 })
 
@@ -36,6 +38,8 @@ type State = {
     siteUrl?: string[]
     imageUrl?: string[]
     userId?: string[]
+    genreIds?: string[]
+    featureIds?: string[]
   }
   message: string | null
 }
@@ -66,6 +70,8 @@ export const actions = async (
     siteUrl: formData.get('siteUrl'),
     imageUrl: factoryImageUrls,
     userId: formData.get('userId'),
+    genreIds: formData.getAll('genreIds'),
+    featureIds: formData.getAll('featureIds'),
   }
 
   const validatedFields = factoryFormSchema.safeParse(factoryData)
@@ -75,7 +81,6 @@ export const actions = async (
       message: 'エラーが発生しました。',
     }
   }
-  console.log(validatedFields.data)
 
   try {
     const res = await createFactory(validatedFields.data)

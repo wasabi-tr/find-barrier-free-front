@@ -5,11 +5,63 @@ import { usePreviewImage } from '@/app/_common/hooks/usePreviewImage'
 import Image from 'next/image'
 import { useSession } from 'next-auth/react'
 import Spinner from '@/app/_components/ui-parts/spinner'
+import { useEffect, useState } from 'react'
+import { getPrefectures } from '../api/getPrefecture'
+import { Feature, Genre, Prefecture } from '@/app/_common/types'
 
 const initialState = {
   errors: {},
   message: null,
 }
+const prefectures = [
+  { name: '北海道', slug: 'hokkaido' },
+  { name: '青森県', slug: 'aomori' },
+  { name: '岩手県', slug: 'iwate' },
+  { name: '宮城県', slug: 'miyagi' },
+  { name: '秋田県', slug: 'akita' },
+  { name: '山形県', slug: 'yamagata' },
+  { name: '福島県', slug: 'fukushima' },
+  { name: '茨城県', slug: 'ibaraki' },
+  { name: '栃木県', slug: 'tochigi' },
+  { name: '群馬県', slug: 'gunma' },
+  { name: '埼玉県', slug: 'saitama' },
+  { name: '千葉県', slug: 'chiba' },
+  { name: '東京都', slug: 'tokyo' },
+  { name: '神奈川県', slug: 'kanagawa' },
+  { name: '新潟県', slug: 'niigata' },
+  { name: '富山県', slug: 'toyama' },
+  { name: '石川県', slug: 'ishikawa' },
+  { name: '福井県', slug: 'fukui' },
+  { name: '山梨県', slug: 'yamanashi' },
+  { name: '長野県', slug: 'nagano' },
+  { name: '岐阜県', slug: 'gifu' },
+  { name: '静岡県', slug: 'shizuoka' },
+  { name: '愛知県', slug: 'aichi' },
+  { name: '三重県', slug: 'mie' },
+  { name: '滋賀県', slug: 'shiga' },
+  { name: '京都府', slug: 'kyoto' },
+  { name: '大阪府', slug: 'osaka' },
+  { name: '兵庫県', slug: 'hyogo' },
+  { name: '奈良県', slug: 'nara' },
+  { name: '和歌山県', slug: 'wakayama' },
+  { name: '鳥取県', slug: 'tottori' },
+  { name: '島根県', slug: 'shimane' },
+  { name: '岡山県', slug: 'okayama' },
+  { name: '広島県', slug: 'hiroshima' },
+  { name: '山口県', slug: 'yamaguchi' },
+  { name: '徳島県', slug: 'tokushima' },
+  { name: '香川県', slug: 'kagawa' },
+  { name: '愛媛県', slug: 'ehime' },
+  { name: '高知県', slug: 'kochi' },
+  { name: '福岡県', slug: 'fukuoka' },
+  { name: '佐賀県', slug: 'saga' },
+  { name: '長崎県', slug: 'nagasaki' },
+  { name: '熊本県', slug: 'kumamoto' },
+  { name: '大分県', slug: 'oita' },
+  { name: '宮崎県', slug: 'miyazaki' },
+  { name: '鹿児島県', slug: 'kagoshima' },
+  { name: '沖縄県', slug: 'okinawa' },
+]
 const week = [
   { value: '月曜日', id: 'monday' },
   { value: '火曜日', id: 'tuesday' },
@@ -25,6 +77,21 @@ export const RegisterForm = () => {
   const { pending } = useFormStatus()
   const { imagePreviewUrl, handleImageChange } = usePreviewImage()
   const [state, register] = useFormState(actions, initialState)
+  const [genres, setGenres] = useState<Genre[]>([])
+  const [features, setFeatures] = useState<Feature[]>([])
+  useEffect(() => {
+    const getData = async () => {
+      const genresRes = await fetch('/api/factory/genres')
+      const genresData = await genresRes.json()
+      const featuresRes = await fetch('/api/factory/features')
+      const featuresData = await featuresRes.json()
+      setGenres(genresData)
+      setFeatures(featuresData)
+    }
+    getData()
+  }, [])
+  console.log(genres)
+  console.log(features)
 
   return (
     <div>
@@ -145,17 +212,22 @@ export const RegisterForm = () => {
               都道府県<span className="text-sm text-red-600">必須</span>
             </label>
             <div className="relative w-[320px]">
-              <input
-                id="prefecture"
+              <select
                 name="prefecture"
-                type="text"
+                id="prefecture"
                 className={`p-4 rounded-lg bg-white w-full ${
                   state?.errors?.prefecture
                     ? 'border-2 border-red-600'
                     : 'border border-color-main-600'
                 }`}
                 aria-describedby="prefecture-error"
-              />
+              >
+                {prefectures.map((prefecture) => (
+                  <option key={prefecture.slug} value={prefecture.slug}>
+                    {prefecture.name}
+                  </option>
+                ))}
+              </select>
             </div>
             {state?.errors?.prefecture && (
               <p
@@ -333,6 +405,76 @@ export const RegisterForm = () => {
                 aria-live="polite"
               >
                 {state.errors.siteUrl}
+              </p>
+            )}
+          </div>
+          <div className="relative flex flex-col items-start gap-2  ">
+            <label htmlFor="genreIds" className="flex items-center gap-2 ">
+              目的
+            </label>
+            <div className="relative w-full">
+              <div className="flex flex-col gap-2">
+                {genres.map((genre) => (
+                  <div key={genre.id} className="flex items-center gap-2">
+                    <input
+                      id={`genre-${genre.id}`}
+                      name="genreIds"
+                      type="checkbox"
+                      className="p-4 rounded-lg bg-white w-4 h-4"
+                      value={genre.id}
+                    />
+                    <label
+                      htmlFor={`genre-${genre.id}`}
+                      className="cursor-pointer"
+                    >
+                      {genre.name}
+                    </label>
+                  </div>
+                ))}
+              </div>
+            </div>
+            {state?.errors?.genreIds && (
+              <p
+                id="genreIds-error"
+                className="text-red-600 text-sm"
+                aria-live="polite"
+              >
+                {state.errors.genreIds}
+              </p>
+            )}
+          </div>
+          <div className="relative flex flex-col items-start gap-2  ">
+            <label htmlFor="featureIds" className="flex items-center gap-2 ">
+              目的
+            </label>
+            <div className="relative w-full">
+              <div className="flex flex-col gap-2">
+                {features.map((feature) => (
+                  <div key={feature.id} className="flex items-center gap-2">
+                    <input
+                      id={`feature-${feature.id}`}
+                      name="featureIds"
+                      type="checkbox"
+                      className="p-4 rounded-lg bg-white w-4 h-4"
+                      value={feature.id}
+                    />
+                    <label
+                      htmlFor={`feature-${feature.id}`}
+                      className="cursor-pointer"
+                    >
+                      {feature.name}
+                    </label>
+                  </div>
+                ))}
+              </div>
+            </div>
+            {state?.errors?.featureIds && (
+              <p
+                id="featureIds-error"
+                className="text-red-600 text-sm"
+                aria-live="polite"
+              >
+                {state.errors.featureIds}
               </p>
             )}
           </div>

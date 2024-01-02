@@ -30,9 +30,6 @@ const Header = () => {
                 href={'/factory'}
                 className="flex items-center gap-2 p-3 rounded-md transition  hover:bg-color-main-200 "
               >
-                <span>
-                  <BuildingLibraryIcon className="w-6 h-6 text-color-main-800" />
-                </span>
                 施設情報
               </Link>
             </li>
@@ -43,9 +40,6 @@ const Header = () => {
                     href={'/dashboard/factory'}
                     className="flex items-center gap-2 p-3 rounded-md transition  hover:bg-color-main-200 "
                   >
-                    <span>
-                      <UserIcon className="w-6 h-6 text-color-main-800" />
-                    </span>
                     マイページ
                   </Link>
                 </li>

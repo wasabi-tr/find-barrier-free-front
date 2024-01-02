@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, { FC } from 'react'
 import { UserIcon } from '@heroicons/react/24/solid'
-import { getReviewsByFactoryId } from '../../review/api'
+import { getReviewsByFactoryId } from '../../review/api/getReviewsByFactoryId'
 
 type Props = {
   factory: Factory
@@ -27,7 +27,7 @@ const FactoryItem: FC<Props> = async ({ factory }) => {
     <li>
       <Link
         href={`/factory/${id}`}
-        className="flex items-start gap-2 relative py-8 px-4  border border-color-green-600 rounded-md transition duration-300 hover:border-color-green-800 hover:bg-color-main-200 lg:flex-col"
+        className="flex items-start gap-2 relative py-8 px-4  border-2  rounded-2xl transition duration-300 bg-white hover:border-color-green-800 lg:flex-col"
       >
         <figure className="relative basis-[240px] w-[240px] aspect-video min-h-0 mx-auto ">
           <Image
@@ -41,7 +41,7 @@ const FactoryItem: FC<Props> = async ({ factory }) => {
           <p className="font-semibold">{name}</p>
           <p>
             〒{zipcode}&nbsp;
-            {`${prefecture}${city}${addressDetail}`}
+            {`${prefecture.name}${city}${addressDetail}`}
           </p>
           {genres && genres.length > 0 && (
             <ul className="flex gap-1 mt-2">

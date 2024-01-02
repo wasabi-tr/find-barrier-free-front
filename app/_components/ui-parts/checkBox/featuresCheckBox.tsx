@@ -1,9 +1,23 @@
 import React from 'react'
 import { BuildingLibraryIcon } from '@heroicons/react/24/outline'
-import { getFeatures } from '@/app/_features/factory/api'
+import { Feature } from '@/app/_common/types'
+import { useQuery } from '@tanstack/react-query'
+import Spinner from '../spinner'
+import { getFeatures } from '@/app/_features/factory/api/getFeatures'
 
-const AccessibilityCheckBoxes = async () => {
+const FeaturesCheckBox = async () => {
+  // const getFeatures = async () => {
+  //   const res = await fetch('api/features')
+  //   return await res.json()
+  // }
+  // const { data: features, isLoading } = useQuery<Feature[]>({
+  //   queryKey: ['features'],
+  //   queryFn: getFeatures,
+  //   staleTime: Infinity,
+  // })
+  // if (isLoading) return <Spinner />
   const features = await getFeatures()
+  //選択されたらクエリパラメータに含む？
 
   return (
     <div className="flex flex-col gap-2">
@@ -20,8 +34,8 @@ const AccessibilityCheckBoxes = async () => {
               <input
                 id={feature.id}
                 type="checkbox"
-                name="accessibilityFeatures[]"
-                value={feature.name}
+                name="features"
+                value={feature.slug}
                 className="w-4 h-4 border-gray-400 rounded  cursor-pointer accent-color-green-600"
               />
               <label htmlFor={feature.id} className="">
@@ -35,4 +49,4 @@ const AccessibilityCheckBoxes = async () => {
   )
 }
 
-export default AccessibilityCheckBoxes
+export default FeaturesCheckBox

@@ -27,7 +27,7 @@ const ReviewForm = () => {
   useEffect(() => {
     const getReview = async () => {
       const res = await fetch(
-        `api/review/getReviewByUserIdAndFactoryId?userId=${userId}&factoryId=${factoryId}`
+        `/api/review/getReviewByUserIdAndFactoryId/?userId=${userId}&factoryId=${factoryId}`
       )
       const data = await res.json()
       setReview(data)

@@ -9,7 +9,7 @@ const SignInForm = () => {
   const { email, setEmail, password, setPassword, signIn, error } =
     useMutateAuth()
   return (
-    <div className="p-16 rounded-lg shadow-md  bg-white sm:p-5">
+    <div className="p-16 rounded-lg shadow-2xl  bg-white sm:p-5">
       <h2 className="text-center font-semibold">ログインする</h2>
       {error && (
         <div className="flex items-center gap-4 border-2 border-red-600 rounded-md p-4 mt-4 ">
