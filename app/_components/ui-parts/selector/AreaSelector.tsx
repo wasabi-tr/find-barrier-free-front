@@ -18,7 +18,7 @@ export const AreaSelector: FC = async () => {
         className="selector"
         defaultValue={'東京都'}
       >
-        {prefectures.map((prefecture) => (
+        {prefectures?.map((prefecture) => (
           <option key={prefecture.id} value={prefecture.slug}>
             {prefecture.name}
           </option>
