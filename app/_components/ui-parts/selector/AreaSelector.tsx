@@ -12,12 +12,7 @@ export const AreaSelector: FC = async () => {
         </span>
         地域
       </label>
-      <select
-        name="area"
-        id="area"
-        className="selector"
-        defaultValue={'東京都'}
-      >
+      <select name="area" id="area" className="selector">
         {prefectures?.map((prefecture) => (
           <option key={prefecture.id} value={prefecture.slug}>
             {prefecture.name}

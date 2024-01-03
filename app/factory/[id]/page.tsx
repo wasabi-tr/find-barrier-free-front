@@ -11,6 +11,7 @@ import {
 } from '@heroicons/react/24/outline'
 import Image from 'next/image'
 import Link from 'next/link'
+import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
 
 export default async function FactoryDetail({
@@ -19,7 +20,10 @@ export default async function FactoryDetail({
   params: { id: string }
 }) {
   const factory = await getFactoryById(params.id)
-  const reviews = await getReviewsByFactoryId(params.id)
+
+  if (!factory) {
+    return notFound()
+  }
 
   const {
     id,
@@ -39,6 +43,7 @@ export default async function FactoryDetail({
     imageUrl,
     genres,
     features,
+    reviews,
   } = factory
 
   return (
