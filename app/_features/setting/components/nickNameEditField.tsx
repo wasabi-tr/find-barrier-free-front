@@ -33,7 +33,7 @@ const NickNameEditField = ({ user }: { user: User }) => {
         router.refresh()
       }}
     >
-      <div className="flex flex-col items-start gap-5 relative p-8 border-2  rounded-2xl  ">
+      <div className="flex flex-col items-start gap-5 relative p-8 border-2  rounded-2xl bg-white ">
         <label htmlFor="nickName" className="text-lg flex item-center gap-2">
           ユーザーネーム
         </label>

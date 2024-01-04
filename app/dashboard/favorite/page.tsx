@@ -19,9 +19,7 @@ const DashboardFavorite = async () => {
       ))}
     </ul>
   ) : (
-    <p className="text-center mt-12">
-      お気に入りに登録されている施設はありません。
-    </p>
+    <p className="text-center">お気に入りに登録されている施設はありません。</p>
   )
 }
 

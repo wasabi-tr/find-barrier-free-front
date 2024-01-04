@@ -20,7 +20,7 @@ const DashboardFactory = async () => {
           ))}
         </ul>
       ) : (
-        <p className="text-center mt-12">投稿した施設はありません。</p>
+        <p className="text-center">投稿した施設はありません。</p>
       )}
       <div className="flex justify-center mt-10">
         <Link

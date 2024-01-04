@@ -9,6 +9,7 @@ import {
   ArrowRightOnRectangleIcon,
 } from '@heroicons/react/24/outline'
 import { useSession } from 'next-auth/react'
+import Image from 'next/image'
 const Header = () => {
   const session = useSession()
   return (
@@ -18,10 +19,16 @@ const Header = () => {
           <div>
             <Link
               href={'/'}
-              className="px-4 py-1 rounded-md transition duration-300 
+              className="flex items-center  p-3 rounded-md transition duration-300 
             hover:bg-color-main-200"
             >
-              FurAlle
+              <Image
+                src={'/common/logo.svg'}
+                width={180}
+                height={60}
+                alt="ひろばリンク"
+                className=""
+              />
             </Link>
           </div>
           <ul className="flex gap-4 items-center ml-auto sm:hidden">

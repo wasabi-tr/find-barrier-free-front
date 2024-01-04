@@ -13,7 +13,7 @@ const BottomNavigation = () => {
   const session = useSession()
 
   return (
-    <div className="hidden sm:block fixed bottom-0 left-0 w-full">
+    <div className="hidden sm:block fixed bottom-0 left-0 w-full bg-white">
       <ul className="grid grid-cols-3  ml-auto sm">
         <li>
           <Link
