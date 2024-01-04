@@ -170,7 +170,7 @@ export default async function FactoryDetail({
                     <div>
                       <span>
                         〒{zipcode}&nbsp;
-                        {`${prefecture}${city}${addressDetail}`}
+                        {`${prefecture.name}${city}${addressDetail}`}
                       </span>
                       <div className="relative aspect-video mt-2 rounded-md overflow-hidden">
                         <Suspense fallback={<Spinner />}>

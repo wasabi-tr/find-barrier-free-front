@@ -1,4 +1,5 @@
 'use server'
+
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { z } from 'zod'
@@ -84,11 +85,11 @@ export const actions = async (
 
   try {
     const res = await createFactory(validatedFields.data)
-    revalidatePath('/dashboard/factory/')
-    redirect('/dashboard/factory')
   } catch (error) {
     return {
       message: '施設の登録に失敗しました。',
     }
   }
+  revalidatePath('/factory')
+  redirect('/factory')
 }

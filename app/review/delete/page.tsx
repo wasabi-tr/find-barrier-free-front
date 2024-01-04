@@ -2,7 +2,7 @@ import Container from '@/app/_components/layouts/container'
 import ReviewDeleteForm from '@/app/_features/review/component/reviewDeleteForm'
 import React from 'react'
 
-const DeleteReviewModal = async ({
+const DeleteReview = async ({
   searchParams,
 }: {
   searchParams: { id: string }
@@ -16,4 +16,4 @@ const DeleteReviewModal = async ({
   )
 }
 
-export default DeleteReviewModal
+export default DeleteReview

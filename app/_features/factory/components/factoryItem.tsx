@@ -4,7 +4,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, { FC } from 'react'
 import { UserIcon } from '@heroicons/react/24/solid'
-import { getReviewsByFactoryId } from '../../review/api/getReviewsByFactoryId'
 
 type Props = {
   factory: Factory
@@ -20,8 +19,8 @@ const FactoryItem: FC<Props> = async ({ factory }) => {
     addressDetail,
     imageUrl,
     genres,
+    reviews,
   } = factory
-  const reviews = await getReviewsByFactoryId(id)
 
   return (
     <li>

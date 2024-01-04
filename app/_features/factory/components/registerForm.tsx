@@ -4,9 +4,7 @@ import { actions } from '../actions/factoryRegisterActions'
 import { usePreviewImage } from '@/app/_common/hooks/usePreviewImage'
 import Image from 'next/image'
 import { useSession } from 'next-auth/react'
-import Spinner from '@/app/_components/ui-parts/spinner'
 import { useEffect, useState } from 'react'
-import { getPrefectures } from '../api/getPrefecture'
 import { Feature, Genre, Prefecture } from '@/app/_common/types'
 
 const initialState = {
@@ -79,6 +77,7 @@ export const RegisterForm = () => {
   const [state, register] = useFormState(actions, initialState)
   const [genres, setGenres] = useState<Genre[]>([])
   const [features, setFeatures] = useState<Feature[]>([])
+
   useEffect(() => {
     const getData = async () => {
       const genresRes = await fetch('/api/factory/genres')
@@ -90,8 +89,6 @@ export const RegisterForm = () => {
     }
     getData()
   }, [])
-  console.log(genres)
-  console.log(features)
 
   return (
     <div>
@@ -518,7 +515,7 @@ export const RegisterForm = () => {
               </p>
             )}
           </div>
-          <input type="hidden" name="userId" value={userId} />
+          {userId && <input type="hidden" name="userId" value={userId} />}
           <div className="flex justify-center mt-5">
             <button
               className={`px-4 py-3 border border-color-main-400  rounded-lg transition w-[320px] h-16 hover:bg-color-main-200 `}

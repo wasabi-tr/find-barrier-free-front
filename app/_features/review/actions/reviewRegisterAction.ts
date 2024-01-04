@@ -51,16 +51,11 @@ export const registerReviewAction = async (
 
   try {
     const res = await createReview(validatedFields.data)
-    console.log(res)
-    // revalidatePath(`/factory/${validatedFields.data.factoryId}/`)
-    // redirect(`/factory/${validatedFields.data.factoryId}/`)
-
-    return {
-      message: 'ok',
-    }
   } catch (error: any) {
     return {
       message: error.message,
     }
   }
+  revalidatePath(`/factory/${validatedFields.data.factoryId}/`)
+  redirect(`/factory/${validatedFields.data.factoryId}/`)
 }
