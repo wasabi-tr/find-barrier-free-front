@@ -45,7 +45,7 @@ const DescriptionEditField = ({ user }: { user: User }) => {
             <textarea
               id="description"
               name="description"
-              value={editedDescription ?? user?.description}
+              value={editedDescription ?? user?.description ?? ''}
               onChange={handleChange}
               className="p-2 rounded-lg bg-white w-full border border-color-main-400 min-h-[240px]"
             />
