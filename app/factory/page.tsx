@@ -17,7 +17,7 @@ const Factory = async ({ searchParams }: { searchParams: Props }) => {
   return (
     <div className="bg-color-main-50">
       <Container>
-        <div className="flex items-start justify-center gap-8 py-20  sm:flex-col">
+        <div className="flex items-start justify-center gap-8 py-20  sm:flex-col sm:py-10">
           <aside className="flex-shrink-0 basis-[352px]  mx-auto sm:w-full sm:basis-0">
             <SearchBox>
               <AreaSelector />
@@ -35,7 +35,7 @@ const Factory = async ({ searchParams }: { searchParams: Props }) => {
               </div>
             </SearchBox>
           </aside>
-          <div className="flex-1">
+          <div className="flex-1 sm:w-full">
             <FactoryList searchParams={searchParams} />
           </div>
         </div>

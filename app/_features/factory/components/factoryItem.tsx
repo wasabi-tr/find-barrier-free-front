@@ -26,9 +26,9 @@ const FactoryItem: FC<Props> = async ({ factory }) => {
     <li>
       <Link
         href={`/factory/${id}`}
-        className="flex items-start gap-2 relative py-8 px-4  border-2  rounded-2xl transition duration-300 bg-white hover:border-color-green-800 lg:flex-col"
+        className="flex items-start gap-2 relative p-8 border-2  rounded-2xl transition duration-300 bg-white hover:border-color-green-800 lg:block sm:rounded-lg"
       >
-        <figure className="relative basis-[240px] w-[240px] aspect-video min-h-0 mx-auto ">
+        <figure className="relative basis-[240px] w-[240px] aspect-3/2 min-h-0 mx-auto sm:w-full">
           <Image
             src={imageUrl[0] || dummyImagePath}
             alt={``}
@@ -36,9 +36,9 @@ const FactoryItem: FC<Props> = async ({ factory }) => {
             className="w-full h-auto object-contain"
           />
         </figure>
-        <div className="flex-1 w-full">
+        <div className="flex-1 w-full sm:mt-3">
           <p className="font-semibold">{name}</p>
-          <p>
+          <p className="sm:text-sm">
             〒{zipcode}&nbsp;
             {`${prefecture.name}${city}${addressDetail}`}
           </p>
@@ -47,7 +47,7 @@ const FactoryItem: FC<Props> = async ({ factory }) => {
               {genres.map((genre) => (
                 <li
                   key={genre.genre.id}
-                  className="py-1 px-4 bg-slate-200 rounded-lg text-sm"
+                  className="py-1 px-4 bg-slate-200 rounded-lg text-sm sm:rounded"
                 >
                   #{genre.genre.name}
                 </li>

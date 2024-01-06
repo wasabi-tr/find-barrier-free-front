@@ -54,6 +54,9 @@ const config: Config = {
         'auto-min-300': 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))',
         'auto-min-200': 'repeat(auto-fit, minmax(min(200px, 100%), 1fr))',
       },
+      aspectRatio: {
+        '3/2': '3/2',
+      },
     },
   },
   plugins: [],

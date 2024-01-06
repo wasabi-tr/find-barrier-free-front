@@ -15,7 +15,7 @@ const DashboardReview = async () => {
       ))}
     </ul>
   ) : (
-    <p className="text-center mt-12">投稿した口コミはありません。</p>
+    <p className="text-center ">投稿した口コミはありません。</p>
   )
 }
 

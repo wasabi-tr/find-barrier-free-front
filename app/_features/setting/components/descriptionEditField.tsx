@@ -35,7 +35,7 @@ const DescriptionEditField = ({ user }: { user: User }) => {
         router.refresh()
       }}
     >
-      <div className="flex flex-col items-start gap-5 relative p-8  border-2  rounded-2xl ">
+      <div className="flex flex-col items-start gap-5 relative p-8  border-2  rounded-2xl bg-white">
         <label htmlFor="description" className="text-lg">
           自己紹介
         </label>
@@ -45,7 +45,7 @@ const DescriptionEditField = ({ user }: { user: User }) => {
             <textarea
               id="description"
               name="description"
-              value={editedDescription ?? user?.description}
+              value={editedDescription ?? user?.description ?? ''}
               onChange={handleChange}
               className="p-2 rounded-lg bg-white w-full border border-color-main-400 min-h-[240px]"
             />

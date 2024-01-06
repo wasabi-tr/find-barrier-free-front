@@ -4,7 +4,6 @@ import Spinner from '@/app/_components/ui-parts/spinner'
 import { getAllFactory } from '@/app/_features/factory/api/getAllFactory'
 import { getFactoryById } from '@/app/_features/factory/api/getFactoryById'
 import { FavoriteButton } from '@/app/_features/favorite/components/favoriteButtton'
-import { getReviewsByFactoryId } from '@/app/_features/review/api/getReviewsByFactoryId'
 import {
   ChatBubbleLeftEllipsisIcon,
   UserIcon,
