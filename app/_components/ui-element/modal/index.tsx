@@ -51,10 +51,10 @@ export default function Modal({ children }: { children: React.ReactNode }) {
       onClick={onClick}
     >
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[736px] max-w-full max-h-[80%] overflow-y-scroll">
-        <div className="py-10 px-14 bg-white  rounded-md ">
+        <div className="relative py-10 px-14 bg-white  rounded-md ">
           <button
             ref={closeBtn}
-            className="flex flex-col justify-center items-center w-14 h-14 border border-color-main-800 text-xs rounded-full ml-auto transition hover:bg-color-main-200"
+            className="absolute top-6 right-6 flex flex-col justify-center items-center w-14 h-14 border border-color-main-800 text-xs rounded-full  transition hover:bg-color-main-200"
           >
             <span>
               <XMarkIcon className="w-4 h-4 text-color-main-800" />{' '}

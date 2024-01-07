@@ -24,6 +24,7 @@ const FeaturesCheckBox = async () => {
                 className="w-4 h-4 border-gray-400 rounded  cursor-pointer accent-color-green-600"
               />
               <label htmlFor={feature.id} className="">
+                <span></span>
                 {feature.name}
               </label>
             </div>

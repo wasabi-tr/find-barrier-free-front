@@ -3,17 +3,19 @@ import { Factory } from '@/app/_common/types'
 type Props = {
   factories: Factory[]
   searchParams: {
-    area: string | null
+    prefecture: string | null
     purpose: string | null
     free: string | null
     features: string[] | null
   }
 }
 export const filterFactories = ({ factories, searchParams }: Props) => {
-  const { area, purpose, free, features } = searchParams
+  const { prefecture, purpose, free, features } = searchParams
 
   return factories.filter((factory) => {
-    const matchesArea = area ? factory.prefecture.slug.includes(area) : true
+    const matchesPrefecture = prefecture
+      ? factory.prefecture.slug.includes(prefecture)
+      : true
     const matchesPurpose = factory.genres.some(
       (genre) => genre.genre.slug === purpose
     )
@@ -25,6 +27,6 @@ export const filterFactories = ({ factories, searchParams }: Props) => {
           )
       : true
     const matchesFree = free ? factory.name.includes(free) : true
-    return matchesArea && matchesPurpose && matchesFeatures && matchesFree
+    return matchesPrefecture && matchesPurpose && matchesFeatures && matchesFree
   })
 }

@@ -50,6 +50,13 @@ export type Prefecture = {
   id: string
   slug: string
   name: string
+  region: Region
+}
+export type Region = {
+  id: string
+  name: string
+  slug: string
+  order: number
 }
 export type Genre = {
   id: string

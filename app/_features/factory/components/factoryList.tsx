@@ -4,19 +4,19 @@ import { getAllFactory } from '../api/getAllFactory'
 import { filterFactories } from './functional/filterFactories'
 
 type Props = {
-  area: string | null
+  prefecture: string | null
   purpose: string | null
   free: string | null
   features: string[] | null
 }
 
 const FactoryList = async ({ searchParams }: { searchParams: Props }) => {
-  const { area, purpose, free, features } = searchParams
+  const { prefecture, purpose, free, features } = searchParams
   const factories = await getAllFactory()
 
   /* 検索されたときに出力する施設情報 */
   let searchResultFactories
-  if (area || purpose || free || features) {
+  if (prefecture || purpose || free || features) {
     searchResultFactories = filterFactories({ factories, searchParams })
   }
 
