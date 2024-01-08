@@ -10,7 +10,9 @@ const DeleteReviewModal = async ({
 }) => {
   return (
     <Modal>
-      <ReviewDeleteForm id={searchParams.id} />
+      <div className="py-10 px-14 sm:px-5">
+        <ReviewDeleteForm id={searchParams.id} />
+      </div>
     </Modal>
   )
 }

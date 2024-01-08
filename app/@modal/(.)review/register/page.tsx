@@ -9,7 +9,9 @@ const ReviewModal = async ({
 }) => {
   return (
     <Modal>
-      <ReviewForm />
+      <div className="py-10 px-14 sm:px-5">
+        <ReviewForm />
+      </div>
     </Modal>
   )
 }

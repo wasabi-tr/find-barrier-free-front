@@ -8,13 +8,13 @@ export default async function Home() {
     <main>
       <section>
         <h1 className="hidden">ひろばリンク</h1>
-        <div className="bg-color-main-50 py-28">
+        <div className="bg-color-main-50 py-28 sm:py-6">
           <Container>
-            <div className="grid  gap-6 place-items-center rounded-2xl border-3 border-green-600 p-8 bg-white">
-              <p className="text-center font-bold">
+            <div className="grid  gap-6 place-items-center rounded-2xl border-3 border-green-600 p-8 bg-white sm:p-4">
+              <p className="text-center font-bold sm:text-sm">
                 バリアフリーやユニバーサルデザインに対応した施設をまとめたポータルサイト
               </p>
-              <div className="w-48 ">
+              <div className="w-48 sm:w-36">
                 <Image
                   src={'/common/logo.svg'}
                   width={200}
@@ -28,7 +28,7 @@ export default async function Home() {
                   <li>
                     <button
                       id="keyword"
-                      className="relative w-full h-full py-2 px-4 border-r-2 border-color-green-600 text-white bg-color-green-600"
+                      className="flex items-center justify-center relative w-full h-full py-2 px-4 border-r-2 border-color-green-600 text-white bg-color-green-600 sm:text-xs sm:py-1 sm:px-0"
                     >
                       キーワードから探す
                       <span className="triangle down absolute bottom-0 left-1/2 translate-x-[-50%] translate-y-full"></span>
@@ -36,18 +36,18 @@ export default async function Home() {
                   </li>
                   <li>
                     <Link
-                      href={'/search-prefecture'}
-                      className="flex items-center justify-center w-full h-full py-2 px-4 border-r-2 border-color-green-600 transition hover:bg-color-green-600 hover:text-white"
+                      href={'/search/prefecture'}
+                      className="flex items-center justify-center w-full h-full py-2 px-4 border-r-2 border-color-green-600 transition hover:bg-color-green-600 hover:text-white sm:text-xs sm:py-1 sm:px-0"
                     >
                       都道府県から探す
                     </Link>
                   </li>
                   <li>
                     <Link
-                      href={'/search-feature'}
-                      className="flex items-center justify-center w-full h-full py-2 px-4 border-color-green-600 transition hover:bg-color-green-600 hover:text-white"
+                      href={'/search/feature'}
+                      className="flex items-center justify-center w-full h-full py-2 px-4 border-color-green-600 transition hover:bg-color-green-600 hover:text-white sm:text-xs sm:py-1 sm:px-0"
                     >
-                      施設の特徴から探す
+                      特徴から探す
                     </Link>
                   </li>
                 </ul>
@@ -66,10 +66,10 @@ export default async function Home() {
                         className="w-full h-full  border-l-2 border-t-2 border-b-2 border-color-main-400 rounded-l-md px-3"
                       />
                     </div>
-                    <button className="flex-shrink-0 basis-[160px] flex items-center gap-3 justify-center w-full py-5 px-8 rounded-r-md bg-color-green-600 text-white transition duration-300 hover:bg-color-green-800 ">
+                    <button className="flex-shrink-0 basis-[160px] flex items-center gap-3 justify-center w-full py-5 px-8 rounded-r-md bg-color-green-600 text-white transition duration-300 hover:bg-color-green-800 sm:basis-24 sm:py-2 sm:px-3 sm:text-sm">
                       検索
                       <span>
-                        <MagnifyingGlassIcon className="h-6 w-6 text-white" />
+                        <MagnifyingGlassIcon className="h-6 w-6 text-white sm:w-4 sm:h-4" />
                       </span>
                     </button>
                   </div>
